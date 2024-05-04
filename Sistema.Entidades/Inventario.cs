@@ -11,7 +11,7 @@ namespace Sistema.Entidades
     {
         public int IdInventario { get; set; }
         public Material IdMaterial { get; set; }
-        public Usuario IdUsuario { get; set; }
+        public Usuarios IdUsuario { get; set; }
         public DateTime FechaEntrada { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioUnitario { get; set; }

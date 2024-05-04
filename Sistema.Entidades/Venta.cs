@@ -11,7 +11,7 @@ namespace Sistema.Entidades
     {
         public int IdVenta { get; set; }
         public Cliente IdCliente { get; set; }
-        public Usuario IdUsuario { get; set; }
+        public Usuarios IdUsuario { get; set; }
         public Factura IdFactura { get; set; }
         public DateTime FechaVenta { get; set; }
         public decimal TotalPagado { get; set; }
