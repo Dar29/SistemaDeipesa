@@ -60,5 +60,27 @@ namespace Sistema.Web.Controllers
 
         }
 
+        [HttpGet]
+        public JsonResult ListaMateriales()
+        {
+            List<VMaterialesDetalle> oLista = new List<VMaterialesDetalle>();
+
+            oLista = new CN_Material().Listar();
+
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public JsonResult ListaCategorias()
+        {
+            List<CategoriaMaterial> oLista = new List<CategoriaMaterial>();
+
+            oLista = new CN_Categoria().Listar();
+
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

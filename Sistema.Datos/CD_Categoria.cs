@@ -9,17 +9,17 @@ using System.Data;
 
 namespace Sistema.Datos
 {
-    public class CD_Usuario
+    public class CD_Categoria
     {
-        public List<Usuarios> Listar()
+        public List<CategoriaMaterial> Listar()
         { 
-            List<Usuarios> lista = new List<Usuarios>();
+            List<CategoriaMaterial> lista = new List<CategoriaMaterial>();
 
             try
             {
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cn)) {
 
-                    string query = "select IdUsuario, Nombres, Apellidos, Usuario, Correo, Estado from Tbl_Usuario";
+                    string query = "select * from Tbl_Categoria";
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
@@ -29,14 +29,11 @@ namespace Sistema.Datos
                         
                         while (dr.Read())
                         {
-                            lista.Add(new Usuarios {
-                                IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                                Nombres = dr["Nombres"].ToString(),
-                                Apellidos = dr["Apellidos"].ToString(),
-                                Usuario = dr["Usuario"].ToString(),
-                                Correo = dr["Correo"].ToString(),
-                                Estado = Convert.ToInt32(dr["Estado"])
-                            
+                            lista.Add(new CategoriaMaterial
+                            {
+                                IdCategoria = dr["IdCategoria"] != DBNull.Value ? Convert.ToInt32(dr["IdCategoria"]) : 0,
+                                Descripcion = dr["Descripcion"] != DBNull.Value ? dr["Descripcion"].ToString() : string.Empty,
+
                             });
                         }
                         
@@ -48,7 +45,7 @@ namespace Sistema.Datos
             catch (Exception)
             {
 
-                lista = new List<Usuarios>();
+                lista = new List<CategoriaMaterial>();
             }
 
 

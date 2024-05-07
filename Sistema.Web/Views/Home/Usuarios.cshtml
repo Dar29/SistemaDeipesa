@@ -25,6 +25,7 @@
 
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Usuario</th>
@@ -41,34 +42,38 @@
 </div>
 
 
- Modal 
-<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-light">
                 <h5 class="modal-title" id="FormModalLabel">Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close-white" data-bs-dismiss="modal" ></button>
             </div>
-            <div class="modal-body g-2">
+            <div class="modal-body g-4">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="exampleInputEmail1" class="form-label">Nombres</label>
+                        <label for="txtidusuario" class="form-label">ID</label>
+                        <input type="text" disabled class="form-control" id="txtidusuario">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtnombres" class="form-label">Nombres</label>
                         <input type="text" class="form-control" id="txtnombres">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="txtapellidos"">
+                        <label for="txtapellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="txtapellidos">
                     </div>
                     <div class="col-sm-6">
-                        <label for="exampleInputEmail1" class="form-label">Correo</label>
-                        <input type="text" class="form-control" id="txtcorreo"">
+                        <label for="txtcorreo" class="form-label">Correo</label>
+                        <input type="text" class="form-control" id="txtcorreo">
                     </div>
                     <div class="col-sm-6">
-                        <label for="exampleInputEmail1" class="form-label">Estado</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
+                        <label for="selectactivo" class="form-label">Activo</label>
+                        <select class="form-select" id="selectactivo">
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
                         </select>
                     </div>
 
@@ -77,8 +82,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
             </div>
         </div>
     </div>
@@ -89,11 +94,9 @@
 
 @section scripts{
     <script>
-
-       
         var tabladata = $("#tabla").DataTable({
             responsive: true,
-            ordering: false,
+            ordering: true,
             "ajax": {
                 url: '@Url.Action("ListaUsuarios","Home")',
                 type: "GET",
@@ -102,12 +105,13 @@
 
             },
             "columns": [
+                { "data": "IdUsuario" },
                 { "data": "Nombres" },
                 { "data": "Apellidos" },
                 { "data": "Usuario" },
                 { "data": "Correo" },
                 {
-                    "data": "Estado", "render": function (valor) {
+                    "data": "Activo", "render": function (valor) {
                         if (valor) {
                             return '<span class="badge bg-success"><i class="fas fa-check"></i></span>'
                         } else {
@@ -116,7 +120,7 @@
                     }
                 },
                 {
-                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pen"></i></button>' +
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
                         '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>',
                     "orderable": false,
                     "searchable": false,
@@ -131,10 +135,45 @@
 
         });
 
-        function abrirModal() {
+        function abrirModal(json) {
+
+            $("#txtidusuario").val("");
+            $("#txtnombres").val("");
+            $("#txtnombres").val("");
+            $("#txtapellidos").val("");
+            $("#txtcorreo").val("");
+            $("#selectactivo").val(1);
+
+
+
+            if (json != null)
+            {
+                $("#txtidusuario").val(json.IdUsuario);
+                $("#txtnombres").val(json.Nombres);
+                $("#txtapellidos").val(json.Apellidos);
+                $("#txtcorreo").val(json.Correo);
+                $("#selectactivo").val(json.Activo == true ? 1 : 0);
+            }
+
             $("#FormModal").modal("show");
+ 
         }
 
+        $("#tabla tbody").on("click", '.btn-editar', function () {
+            
+            var filaSeleccionada = $(this).closest("tr");
+
+            var data = tabladata.row(filaSeleccionada).data();
+            console.log(data);
+
+            abrirModal(data)
+
+        })
+
+        function Guardar() {
+
+
+        }
     </script>
 
 }
