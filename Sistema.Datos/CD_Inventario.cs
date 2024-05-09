@@ -37,6 +37,7 @@ namespace Sistema.Datos
                                 Cantidad = dr["Cantidad"] != DBNull.Value ? Convert.ToInt32(dr["Cantidad"]) : 0,
                                 PrecioUnitario = dr["PrecioUnitario"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioUnitario"]) : 0,
                                 PrecioTotal = dr["PrecioTotal"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioTotal"]) : 0,
+                                Moneda = dr["Moneda"] != DBNull.Value ? dr["Moneda"].ToString() : string.Empty,
                                 UsuarioIngreso = dr["UsuarioIngreso"] != DBNull.Value ? dr["UsuarioIngreso"].ToString() : string.Empty,
                                 Observacion = dr["Observacion"] != DBNull.Value ? dr["Observacion"].ToString() : string.Empty,
                                 FechaIngreso = dr["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(dr["FechaIngreso"]) : DateTime.MinValue

@@ -13,6 +13,7 @@ namespace Sistema.Entidades
         public string Descripcion { get; set; }
         public string Categoria { get; set; }
         public decimal PrecioUnitario { get; set; }
+        public string Moneda { get; set; }
         public int Stock { get; set; }
         public string Estado { get; set; }
     }

@@ -60,6 +60,7 @@ namespace Sistema.Web.Controllers
 
         }
 
+
         [HttpGet]
         public JsonResult ListaMateriales()
         {
@@ -74,7 +75,18 @@ namespace Sistema.Web.Controllers
         [HttpGet]
         public JsonResult ListaInventario()
         {
-            List<CategoriaMaterial> oLista = new List<VIn>();
+            List<VInventario> oLista = new List<VInventario>();
+
+            oLista = new CN_Inventario().Listar();
+
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public JsonResult ListaCategorias()
+        {
+            List<CategoriaMaterial> oLista = new List<CategoriaMaterial>();
 
             oLista = new CN_Categoria().Listar();
 

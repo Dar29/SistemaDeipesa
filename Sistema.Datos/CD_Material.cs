@@ -36,6 +36,7 @@ namespace Sistema.Datos
                                 Descripcion = dr["Descripcion"] != DBNull.Value ? dr["Descripcion"].ToString() : string.Empty,
                                 Categoria = dr["Categoria"] != DBNull.Value ? dr["Categoria"].ToString() : string.Empty,
                                 PrecioUnitario = dr["PrecioUnitario"] != DBNull.Value ? Convert.ToDecimal(dr["PrecioUnitario"]) : 0,
+                                Moneda = dr["Moneda"] != DBNull.Value ? dr["Moneda"].ToString() : string.Empty,
                                 Stock = dr["Stock"] != DBNull.Value ? Convert.ToInt32(dr["Stock"]) : 0,
                                 Estado = dr["Estado"] != DBNull.Value ? dr["Estado"].ToString() : string.Empty
 
