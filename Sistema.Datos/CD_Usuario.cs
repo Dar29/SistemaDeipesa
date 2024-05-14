@@ -71,10 +71,10 @@ namespace Sistema.Datos
                 {
                     SqlCommand cmd = new SqlCommand("sp_RegistraUsuario", oconexion);
                     cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Apellidos", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Correo", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Contrasenia", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Activo", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Correo", obj.Correo);
+                    cmd.Parameters.AddWithValue("Contrasenia", obj.Contrasenia);
+                    cmd.Parameters.AddWithValue("Activo", obj.Activo);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -106,11 +106,11 @@ namespace Sistema.Datos
                 using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
                 {
                     SqlCommand cmd = new SqlCommand("sp_EditarUsuario", oconexion);
-                    cmd.Parameters.AddWithValue("IdUsuario", obj.Nombres);
+                    cmd.Parameters.AddWithValue("IdUsuario", obj.IdUsuario);
                     cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Apellidos", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Correo", obj.Nombres);
-                    cmd.Parameters.AddWithValue("Activo", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Correo", obj.Correo);
+                    cmd.Parameters.AddWithValue("Activo", obj.Activo);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -131,6 +131,33 @@ namespace Sistema.Datos
             }
 
             return resultado;
+        }
+
+        public bool Eliminar(int id, out string Mensaje)
+        {
+            bool resultado = false;
+            Mensaje = string.Empty;
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("delete top(1) from Tbl_Usuario where IdUsuario = @id", oconexion);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.CommandType = CommandType.Text;
+                    oconexion.Open();
+                    resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                Mensaje = ex.Message;
+            }
+
+            return resultado;
+
         }
     }
 }

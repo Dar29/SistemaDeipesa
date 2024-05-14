@@ -25,15 +25,15 @@ namespace Sistema.Modelo
 
             if (string.IsNullOrEmpty(obj.Nombres) || string.IsNullOrWhiteSpace(obj.Nombres))
             {
-                Mensaje = "El campo Nombres es requerido";
+                Mensaje = "El campo nombres es requerido";
             }
             else if (string.IsNullOrEmpty(obj.Apellidos) || string.IsNullOrWhiteSpace(obj.Apellidos))
             {
-                Mensaje = "El campo Apellidos es requerido";
+                Mensaje = "El campo apellidos es requerido";
             }
             else if (string.IsNullOrEmpty(obj.Correo) || string.IsNullOrWhiteSpace(obj.Correo))
             {
-                Mensaje = "El campo Correo es requerido";
+                Mensaje = "El campo correo es requerido";
             }
 
 
@@ -41,7 +41,20 @@ namespace Sistema.Modelo
             if (string.IsNullOrEmpty(Mensaje))
             {
 
-                string clave = "test123";
+                string clave = CN_Recursos.GenerarClave();
+
+                string asunto = "CREACION CUENTA";
+                string msj_correo = "<h3>Su cuenta fue creada correctamente</h3></br><p>Su clave para acceder es: !clave!</p>";
+                msj_correo = msj_correo.Replace("!clave!", clave);
+
+                bool respuesta = CN_Recursos.EnviarCorreo(obj.Correo, asunto, msj_correo);
+
+                if (respuesta)
+                {
+                    obj.Contrasenia = CN_Recursos.ConvertirSha256(clave);
+                    return objSistemaDatos.Registrar(obj, out Mensaje);
+                }
+
                 obj.Contrasenia = CN_Recursos.ConvertirSha256(clave);
 
                 return objSistemaDatos.Registrar(obj, out Mensaje);
@@ -58,15 +71,15 @@ namespace Sistema.Modelo
 
             if (string.IsNullOrEmpty(obj.Nombres) || string.IsNullOrWhiteSpace(obj.Nombres))
             {
-                Mensaje = "El campo Nombres es requerido";
+                Mensaje = "El campo nombres es requerido";
             }
             else if (string.IsNullOrEmpty(obj.Apellidos) || string.IsNullOrWhiteSpace(obj.Apellidos))
             {
-                Mensaje = "El campo Apellidos es requerido";
+                Mensaje = "El campo apellidos es requerido";
             }
             else if (string.IsNullOrEmpty(obj.Correo) || string.IsNullOrWhiteSpace(obj.Correo))
             {
-                Mensaje = "El campo Correo es requerido";
+                Mensaje = "El campo correo es requerido";
             }
 
             // FALTA LOGICA
@@ -84,29 +97,7 @@ namespace Sistema.Modelo
 
         public bool Eliminar(int id, out string Mensaje)
         {
-            bool resultado = false;
-            Mensaje = string.Empty;
-            try
-            {
-                using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
-                {
-                    SqlCommand cmd = new SqlCommand("delete top(1) from Tbl_Usuario where IdUsuario = @id", oconexion);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.CommandType = CommandType.Text;
-                    oconexion.Open();
-                    resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                resultado = false;
-                Mensaje = ex.Message;
-            }
-
-            return resultado;
-
+            return objSistemaDatos.Eliminar(id, out Mensaje);
         }
     }
 }

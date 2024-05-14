@@ -60,6 +60,36 @@ namespace Sistema.Web.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult GuardarUsuario(Usuarios objeto)
+        {
+            object resultado;
+            string mensaje = string.Empty;
+
+            if(objeto.IdUsuario == 0)
+            {
+                resultado = new CN_Usuario().Registrar(objeto, out mensaje);
+            }
+            else {
+
+                resultado = new CN_Usuario().Editar(objeto, out mensaje);           
+            
+            }
+
+            return Json(new { resultado = resultado, mensaje = mensaje}, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult EliminarUsuario(int id)
+        {
+            bool respuesta = false;
+            string mensaje = string.Empty;
+            respuesta = new CN_Usuario().Eliminar(id, out mensaje);
+
+            return Json(new { resultado = respuesta, mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         [HttpGet]
         public JsonResult ListaMateriales()

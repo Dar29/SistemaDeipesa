@@ -47,13 +47,17 @@
         <div class="modal-content">
             <div class="modal-header bg-dark text-light">
                 <h5 class="modal-title" id="FormModalLabel">Usuario</h5>
-                <button type="button" class="btn-close-white" data-bs-dismiss="modal" ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body g-4">
-                <div class="row">
+            <div class="modal-body">
+                <div class="row g-2">
                     <div class="col-sm-6">
                         <label for="txtidusuario" class="form-label">ID</label>
                         <input type="text" disabled class="form-control" id="txtidusuario">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtuser" class="form-label">Usuario</label>
+                        <input type="text" disabled class="form-control" id="txtuser">
                     </div>
 
                     <div class="col-sm-6">
@@ -79,6 +83,12 @@
 
                 </div>
 
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div id="alertaerror" class="alert alert-danger" role="alert">
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -94,6 +104,7 @@
 
 @section scripts{
     <script>
+
         var tabladata = $("#tabla").DataTable({
             responsive: true,
             ordering: true,
@@ -121,58 +132,246 @@
                 },
                 {
                     "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
-                        '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>',
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
                     "orderable": false,
                     "searchable": false,
                     "width": "90px"
                 }
 
             ],
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Registros",
+                "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Registros",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
             }
-
-
         });
+
+        function actualizarTabla() {
+            tabladata.ajax.reload();
+        }
+
 
         function abrirModal(json) {
 
             $("#txtidusuario").val("");
-            $("#txtnombres").val("");
+            $("#txtuser").val("");
             $("#txtnombres").val("");
             $("#txtapellidos").val("");
             $("#txtcorreo").val("");
-            $("#selectactivo").val(1);
-
-
+            $("#selectactivo").val("");
+            $("#alertaerror").hide();
 
             if (json != null)
             {
                 $("#txtidusuario").val(json.IdUsuario);
+                $("#txtuser").val(json.Usuario);
                 $("#txtnombres").val(json.Nombres);
                 $("#txtapellidos").val(json.Apellidos);
                 $("#txtcorreo").val(json.Correo);
                 $("#selectactivo").val(json.Activo == true ? 1 : 0);
             }
-
             $("#FormModal").modal("show");
- 
+
         }
 
         $("#tabla tbody").on("click", '.btn-editar', function () {
-            
+
             var filaSeleccionada = $(this).closest("tr");
 
             var data = tabladata.row(filaSeleccionada).data();
-            console.log(data);
 
-            abrirModal(data)
+            abrirModal(data);
 
         })
 
         function Guardar() {
+            var User = {
+                IdUsuario: $("#txtidusuario").val(),
+                Usuario: $("#txtuser").val(),
+                Activo: $("#selectactivo").val() == 1 ? true : false,
+                Apellidos: $("#txtapellidos").val(),
+                Correo: $("#txtcorreo").val(),
+                Nombres: $("#txtnombres").val()
+            }
+
+            jQuery.ajax({
+                url: '@Url.Action("GuardarUsuario", "Home")',
+                type: "POST",
+                data: JSON.stringify({ objeto: User }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    $(".modal-body").LoadingOverlay("hide");
+
+                    // USUARIO NUEVO
+                    if (User.IdUsuario == 0) {
+
+                        if (data.resultado != 0) {
+                            User.IdUsuario = data.resultado;
+                            tabladata.row.add(User).draw(false);
+                            $("#FormModal").modal("hide");
+                        }
+                        else {
+                            $("#alertaerror").text(data.mensaje);
+                            $("#alertaerror").show();
+                        }
+                    }
+                    // USUARIO EDITAR
+                    else {
+                        if (data.resultado) {
+                            //tabladata.row(filaSeleccionada).data();
+                            //filaSeleccionada = null;
+                            $("#FormModal").modal("hide");
+
+                        } else {
+                            $("#alertaerror").text(data.mensaje);
+                            $("#alertaerror").show();
+
+                        }
+                    }
+
+                    actualizarTabla();
+
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverla("hide");
+
+                    $("#alertaerror").text("Error Ajax");
+                    $("#alertaerror").show();
+                },
+                beforSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size: 14
+                    })
+                }
+
+            });
+        }
 
 
+
+        $("#tabla tbody").on("click", '.btn-eliminar', function () {
+
+            var usuarioselect = $(this).closest("tr");
+
+            var data = tabladata.row(usuarioselect).data();
+
+            swal({
+                title: "¿Está seguro?",
+                text: "¿Desea eliminar este usuario?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            },
+                function () {
+
+                jQuery.ajax({
+                    url: '@Url.Action("EliminarUsuario", "Home")',
+                    type: "POST",
+                    data: JSON.stringify({ id: data.IdUsuario }),
+                    datatype: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.resultado) {
+                            tabladata.row(usuarioselect).remove().draw();
+                            swal("Eliminado", "El usuario ha sido eliminado correctamente", "success")
+                        } else {
+                            swal("No se pudo eliminar", data.mensaje, "error")
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+
+                })
+                
+            });
+
+            console.log(data);
+
+            //Eliminar(data);
+
+        })
+
+        function Eliminar()
+        {
+            var User = {
+                IdUsuario: $("#txtidusuario").val(),
+                Usuario: $("#txtuser").val(),
+                Activo: $("#selectactivo").val() == 1 ? true : false,
+                Apellidos: $("#txtapellidos").val(),
+                Correo: $("#txtcorreo").val(),
+                Nombres: $("#txtnombres").val()
+            }
+
+           jQuery.ajax({
+               url: '@Url.Action("EliminarUsuario", "Home")',
+               type: "POST",
+               data: JSON.stringify({ objeto: User }),
+               dataType: "json",
+               contentType: "application/json; charset=utf-8",
+               success: function (data) {
+                   debugger;
+                   // USUARIO NUEVO
+                   if (User.IdUsuario == 0) {
+
+                       if (data.resultado != 0) {
+                           User.IdUsuario = data.resultado;
+                           tabladata.row.add(User).draw(false);
+                           actualizarTabla();
+                           $("#FormModal").modal("hide");
+                       }
+                       else {
+                           $("#alertaerror").text(data.mensaje);
+                           $("#alertaerror").show();
+                       }
+
+
+                   }
+                   // USUARIO EDITAR
+                   else {
+
+                       if (data.resultado) {
+                           //tabladata.row(filaSeleccionada).data(User).draw(false);
+                           //filaSeleccionada = null;
+                           $("#FormModal").modal("hide");
+                           //actualizarTabla();
+
+                       } else {
+                           $("#alertaerror").text(data.mensaje);
+                           $("#alertaerror").show();
+                       }
+                   }
+
+               },
+               error: function (error) {
+
+               },
+               beforSend: function () {
+
+               }
+           });
         }
     </script>
 
