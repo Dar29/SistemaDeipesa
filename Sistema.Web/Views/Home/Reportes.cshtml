@@ -4,72 +4,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="padding:20px; margin-top:20px">
+                <div class="card-header" style="background-color: #3D0A0A; color: white; font-size: 24px ">
+                    <i class="fas fa-archive me-2" style="font-size: 24px;"></i> Reporte de Inventario
+                </div>
 
-<div class="card" style="padding:20px; margin-top:20px">
-    <div class="card-header" style="background-color: #3D0A0A; color: white; font-size: 24px ">
-        <i class="fas fa-archive me-2" style="font-size: 24px;"></i> Reporte de Inventario
-    </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fecha_ingreso">Fecha Ingreso:</label>
+                            <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso">
+                        </div>
+                    </div>
 
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="fecha_ingreso" class="col-sm-4 col-form-label">Fecha Ingreso:</label>
-            <div class="col-sm-8">
-                <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fecha_egreso">Fecha Egreso:</label>
+                            <input type="date" class="form-control" id="fecha_egreso" name="fecha_egreso">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lista_materiales">Lista de Materiales:</label>
+                            <select class="form-control text-secondary" id="lista_materiales" name="lista_materiales">
+                                <!-- Opciones de lista de materiales -->
+                                <option class="text-secondary" value="0" selected  disabled>Selecciona un material</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="categoria">Categoría:</label>
+                            <select class="form-control text-secondary"  id="categoria" name="categoria">
+                                <!-- Opciones de categoría -->
+                                <option value="0" class="text-secondary" selected  disabled>Selecciona una categoria</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inventario">Inventario:</label>
+                            <select class="form-control text-secondary" id="inventario" name="inventario">
+                                <!-- Opciones de inventario -->
+                                <option value="0" selected  disabled>Selecciona un inventario</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="usuario">Usuario:</label>
+                            <select class="form-control text-secondary" id="usuario" name="usuario">
+                                <!-- Opciones de usuario -->
+                                <option value="0" selected  disabled>Selecciona un usuario</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="fecha_egreso" class="col-sm-4 col-form-label">Fecha Egreso:</label>
-            <div class="col-sm-8">
-                <input type="date" class="form-control" id="fecha_egreso" name="fecha_egreso">
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="lista_materiales" class="col-sm-4 col-form-label">Lista de Materiales:</label>
-            <div class="col-sm-8">
-                <select class="form-control" id="lista_materiales" name="lista_materiales">
-                    <!-- Opciones de lista de materiales -->
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="categoria" class="col-sm-4 col-form-label">Categoría:</label>
-            <div class="col-sm-8">
-                <select class="form-control" id="categoria" name="categoria">
-                    <!-- Opciones de categoría -->
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="inventario" class="col-sm-4 col-form-label">Inventario:</label>
-            <div class="col-sm-8">
-                <select class="form-control" id="inventario" name="inventario">
-                    <!-- Opciones de inventario -->
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group row">
-            <label for="usuario" class="col-sm-4 col-form-label">Usuario:</label>
-            <div class="col-sm-8">
-                <select class="form-control" id="usuario" name="usuario">
-                    <!-- Opciones de usuario -->
-                </select>
-            </div>
-        </div>
-    </div>
-
 </div>

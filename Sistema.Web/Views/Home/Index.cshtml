@@ -2,39 +2,46 @@
     ViewBag.Title = "Home Page";
 }
 <!-- Carrusel -->
-<div class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <!-- Aquí puedes colocar la primera imagen del carrusel -->
-            <img src="~/Content/image/carousel-1.jpg" class="d-block w-auto" style="opacity:0.1" alt="...">
-        </div>
-        <div class="carousel-item">
-            <!-- Aquí puedes colocar la segunda imagen del carrusel -->
-            <img src="~/Content/image/carousel-2.jpg" class="d-block w-auto" style="opacity:0.1" alt="...">
-        </div>
+<div class="container p-0 m-0">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <!-- Aquí puedes colocar la primera imagen del carrusel -->
+                        <img src="~/Content/image/carousel-1.jpg" class="d-block w-auto" style="opacity:0.1" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <!-- Aquí puedes colocar la segunda imagen del carrusel -->
+                        <img src="~/Content/image/carousel-2.jpg" class="d-block w-auto" style="opacity:0.1" alt="...">
+                    </div>
+                    <!-- Puedes agregar más elementos carousel-item según sea necesario -->
 
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-8 offset-md-2 text-center" style="margin-top: 500px;">
-                    <h1 class="animate__animated animate__bounce" style="font-family: 'Arial', sans-serif; font-weight: bold; color: #333; font-size: 35px;">BIENVENIDO A CONSTRUCTORA DEIPESA</h1>
-                    <p class="lead" style="font-family: 'Open Sans', sans-serif; font-weight: bold; color: #391d88;">Construyendo sueños, forjando realidades.</p>
-                    <!-- Puedes agregar más contenido o botones aquí si lo deseas -->
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="justify-content-center col-md-12 text-center">
+                                <h1 class=" animate__animated animate__bounce" style="font-family: 'Arial', sans-serif; font-weight: bold; color: #333; font-size: 35px;">BIENVENIDO A CONSTRUCTORA DEIPESA</h1>
+                                <p class="lead" style="font-family: 'Open Sans', sans-serif; font-weight: bold; color: #391d88;">Construyendo sueños, forjando realidades.</p>
+                                <!-- Puedes agregar más contenido o botones aquí si lo deseas -->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
-
-        <!-- Puedes agregar más elementos carousel-item según sea necesario -->
     </div>
-
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
