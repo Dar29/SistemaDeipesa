@@ -6,13 +6,13 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card" style="padding:20px; margin-top:20px">
                 <div class="card-header" style="background-color: #3D0A0A; color: white; font-size: 24px ">
                     <i class="fas fa-archive me-2" style="font-size: 24px;"></i> Reporte de Inventario
                 </div>
 
-                <div class="row">
+                <div class="row" style="margin-top:20px">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="fecha_ingreso">Fecha Ingreso:</label>
@@ -22,41 +22,21 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="fecha_egreso">Fecha Egreso:</label>
-                            <input type="date" class="form-control" id="fecha_egreso" name="fecha_egreso">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="lista_materiales">Lista de Materiales:</label>
-                            <select class="form-control text-secondary" id="lista_materiales" name="lista_materiales">
-                                <!-- Opciones de lista de materiales -->
-                                <option class="text-secondary" value="0" selected  disabled>Selecciona un material</option>
+                            <label for="materiales">Material:</label>
+                            <select class="form-control text-secondary" id="materiales" name="materiales">
+                                <option class="text-secondary" value="0" selected disabled>Selecciona un material</option>
                             </select>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="row"  style="margin-top:20px">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="categoria">Categoría:</label>
-                            <select class="form-control text-secondary"  id="categoria" name="categoria">
-                                <!-- Opciones de categoría -->
-                                <option value="0" class="text-secondary" selected  disabled>Selecciona una categoria</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="inventario">Inventario:</label>
-                            <select class="form-control text-secondary" id="inventario" name="inventario">
-                                <!-- Opciones de inventario -->
-                                <option value="0" selected  disabled>Selecciona un inventario</option>
+                            <select class="form-control text-secondary" id="categoria" name="categoria">
+                                <option value="0" class="text-secondary" selected disabled>Selecciona una categoria</option>
                             </select>
                         </div>
                     </div>
@@ -65,14 +45,135 @@
                         <div class="form-group">
                             <label for="usuario">Usuario:</label>
                             <select class="form-control text-secondary" id="usuario" name="usuario">
-                                <!-- Opciones de usuario -->
-                                <option value="0" selected  disabled>Selecciona un usuario</option>
+                                <option value="0" selected disabled>Selecciona un usuario</option>
                             </select>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" style="margin-top:20px">
+                            <button type="button" class="btn btn-secondary" onclick="Visualizar()">Visualizar</button>
+                            <button type="button" class="btn btn-success" onclick="Exportar()">Exportar</button>
+                        </div>
+                    </div>
+                </div>
 
+                <hr/>
+                <div id="tabladiv" class="display cell-border d-none" style="width: 100%; margin-top:10px" >
+                    <table id="tabla" class="display cell-border d-none" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID Inventario</th>
+                                <th>ID Material</th>
+                                <th>Material</th>
+                                <th>Cantidad Ingreso</th>
+                                <th>Precio Unitario</th>
+                                <th>Precio Total</th>
+                                <th>Moneda</th>
+                                <th>Usuario Ingreso</th>
+                                <th>Observacion</th>
+                                <th>Fecha Ingreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section scripts{
+    <script>
+
+        var tabladata = $("#tabla").DataTable({
+            responsive: true,
+            ordering: true,
+            "ajax": {
+                url: '@Url.Action("ListaInventario", "Home")',
+                type: "GET",
+                dataType: "json"
+            },
+            "columns": [
+                { "data": "IdInventario" },
+                { "data": "IdMaterial" },
+                { "data": "Material" },
+                { "data": "Cantidad" },
+                { "data": "PrecioUnitario" },
+                { "data": "PrecioTotal" },
+                { "data": "Moneda" },
+                { "data": "UsuarioIngreso" },
+                { "data": "Observacion" },
+                { "data": "FechaIngreso" }
+            ],
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Registros",
+                "infoFiltered": "(Filtrado de _MAX_ total registros)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Registros",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+
+
+        });
+
+
+        function Visualizar() {
+            document.getElementById('tabladiv').classList.remove('d-none');
+            document.getElementById('tabla').classList.remove('d-none');
+        }
+
+        function Exportar() {
+            // Obtener la tabla y sus filas
+            const table = document.getElementById('tabla');
+            const rows = table.querySelectorAll('tr');
+
+            // Crear un nuevo libro de Excel
+            const workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo
+            const sheet = XLSX.utils.table_to_sheet(table);
+
+            // Agregar encabezado "REPORTE DE INVENTARIO"
+            XLSX.utils.sheet_add_aoa(sheet, [['REPORTE DE INVENTARIO']], { origin: [0, 0], raw: true });
+
+            // Agregar fila para fecha de generación
+            const fechaGeneracion = new Date().toLocaleDateString();
+            XLSX.utils.sheet_add_aoa(sheet, [['Fecha de generación:', fechaGeneracion]], { origin: [1, 0], raw: true });
+
+            // Agregar nombres de columnas en negrita
+            const headerRow = sheet['2']; // Cambiado el índice para que sea la tercera fila (0-indexed)
+            for (let cell in headerRow) {
+                if (headerRow.hasOwnProperty(cell)) {
+                    headerRow[cell].s = { font: { bold: true } };
+                }
+            }
+
+            // Agregar la hoja de cálculo al libro
+            XLSX.utils.book_append_sheet(workbook, sheet, 'Inventario');
+
+            // Guardar el libro como archivo Excel
+            XLSX.writeFile(workbook, 'Reporte Inventario.xlsx');
+        }
+
+
+    </script>
+
+}
+

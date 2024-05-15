@@ -59,6 +59,28 @@ namespace Sistema.Web.Controllers
             return Json(new { data = oLista },JsonRequestBehavior.AllowGet);
 
         }
+        [HttpGet]
+        public JsonResult ListaReporte()
+        {
+            List<Reporte> oLista = new List<Reporte>();
+
+            // Crear un objeto filtros con los valores adecuados
+            filtros objFiltros = new filtros
+            {
+                // Asignar valores a las propiedades según tus requerimientos
+                IdMaterial = 1, // Por ejemplo
+                IdCategoria = 2, // Por ejemplo
+                IdUsuario = 3, // Por ejemplo
+                Stock = 100, // Por ejemplo
+                FechaIngreso = DateTime.Now // Por ejemplo
+            };
+
+            // Llamar al método ReporteInventarioGeneral con el objeto filtros
+            oLista = new CN_Reporte().ReporteInventarioGeneral(objFiltros, out string mensaje);
+
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public JsonResult GuardarUsuario(Usuarios objeto)

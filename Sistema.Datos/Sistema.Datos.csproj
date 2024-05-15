@@ -45,6 +45,7 @@
     <Compile Include="CD_Categoria.cs" />
     <Compile Include="CD_Inventario.cs" />
     <Compile Include="CD_Material.cs" />
+    <Compile Include="CD_Reporte.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
