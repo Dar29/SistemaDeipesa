@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sistema.Datos;
 using Sistema.Entidades;
+using Sistema.Entidades.Utils;
 
 namespace Sistema.Modelo
 {
@@ -13,9 +14,15 @@ namespace Sistema.Modelo
         private CD_Categoria objSistemaDatos = new CD_Categoria();
 
         public List<CategoriaMaterial> Listar()
-        {
-            return objSistemaDatos.Listar();
-        }
+            => objSistemaDatos.Listar();
 
+        public Resultado GuardarOActualizar(CategoriaMaterial obj)
+            => objSistemaDatos.GuardarOActualizar(obj);
+
+        public CategoriaMaterial ObtenerPorId(int id)
+            => objSistemaDatos.ObtenerPorId(id);
+
+        public Resultado Desactivar(int id)
+            => objSistemaDatos.Desactivar(id);
     }
 }

@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -487,6 +488,7 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
+    <Content Include="Scripts\Views\Categorias\index.js" />
     <Content Include="Scripts\Views\Materiales\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -511,6 +513,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Categorias\" />
     <Folder Include="Views\Materiales\" />
   </ItemGroup>
   <ItemGroup>
