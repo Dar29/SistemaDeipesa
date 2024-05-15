@@ -16,7 +16,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <button type="button" class="btn btn-success" onclick="abrirModal()">Ingresar Nuevo</button>
+                <button type="button" class="btn btn-success" id="btnCrearRegistro">Ingresar Nuevo</button>
             </div>
         </div>
         <hr />
@@ -45,49 +45,89 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <form class="modal-content" name="frmInventario">
             <div class="modal-header bg-dark text-light">
-                <h5 class="modal-title" id="FormModalLabel">Usuario</h5>
+                <h5 class="modal-title" id="FormModalLabel">Inventario</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body g-4">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <label for="txtidusuario" class="form-label">ID</label>
-                        <input type="text" disabled class="form-control" id="txtidusuario">
+                    <div class="col-sm-6" hidden>
+                        <label for="txtid" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="txtid" name="IdInventario">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtnombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="txtnombres">
+                        <label for="selectMaterial" class="form-label">Material</label>
+                        <select class="form-select" id="selectMaterial" name="IdMaterial"></select>
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtapellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="txtapellidos">
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="txtcorreo" class="form-label">Correo</label>
-                        <input type="text" class="form-control" id="txtcorreo">
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="selectactivo" class="form-label">Activo</label>
-                        <select class="form-select" id="selectactivo">
-                            <option value="1">Si</option>
-                            <option value="0">No</option>
-                        </select>
+                        <label for="selectMoneda" class="form-label">Moneda</label>
+                        <select class="form-select" id="selectMoneda" name="IdMoneda"></select>
                     </div>
 
+                    <div class="col-sm-6">
+                        <label for="txtFechaEntrada" class="form-label">Fecha Entrada</label>
+                        <input type="date" class="form-control" id="txtFechaEntrada" name="FechaEntrada">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtCantidad" class="form-label">Cantidad</label>
+                        <input type="text" class="form-control" id="txtCantidad" name="Cantidad">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtPrecioUnitario" class="form-label">Precio Unitario</label>
+                        <input type="text" class="form-control" id="txtPrecioUnitario" name="PrecioUnitario">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtPrecioTotal" class="form-label">Precio Total</label>
+                        <input type="text" class="form-control" id="txtPrecioTotal" name="PrecioTotal">
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="txtObservacion" class="form-label">Observación</label>
+                        <textarea type="text" class="form-control" id="txtObservacion" name="Observacion"></textarea>
+                    </div>
                 </div>
 
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="modalTransaccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Detalle de inventario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body g-4">
+                <table id="tablaTransaccion" class="display cell-border" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Id Tracking</th>
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th>Observacion</th>
+                            <th>Usuario Ingreso</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -95,100 +135,6 @@
 
 
 @section scripts{
-    <script>
-        var tabladata = $("#tabla").DataTable({
-            responsive: true,
-            ordering: true,
-            "ajax": {
-                url: '@Url.Action("ListaInventario","Home")',
-                type: "GET",
-                dataType: "json"
-            },
-            "columns": [
-                { "data": "IdInventario" },
-                { "data": "IdMaterial" },
-                { "data": "Material" },
-                { "data": "Cantidad" },
-                { "data": "PrecioUnitario" },
-                { "data": "PrecioTotal" },
-                { "data": "Moneda" },
-                { "data": "UsuarioIngreso" },
-                { "data": "Observacion" },
-                { "data": "FechaIngreso" },
-                {
-                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
-                        '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>' +
-                        '<button type="button" class="btn btn-info btn-sm ms-2 btn-detalle"><i class="fas fa-eye"></i></button>',
-                    "orderable": false,
-                    "searchable": false,
-                    "width": "100px"
-                }
-
-            ],
-            language: {
-                "decimal": "",
-                "emptyTable": "No hay información",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
-                "infoEmpty": "Mostrando 0 to 0 of 0 Registros",
-                "infoFiltered": "(Filtrado de _MAX_ total registros)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Registros",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "Buscar:",
-                "zeroRecords": "Sin resultados encontrados",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Ultimo",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
-
-
-        });
-
-        function abrirModal(json) {
-
-            $("#txtidusuario").val("");
-            $("#txtnombres").val("");
-            $("#txtnombres").val("");
-            $("#txtapellidos").val("");
-            $("#txtcorreo").val("");
-            $("#selectactivo").val(1);
-
-
-
-            if (json != null)
-            {
-                $("#txtidusuario").val(json.IdUsuario);
-                $("#txtnombres").val(json.Nombres);
-                $("#txtapellidos").val(json.Apellidos);
-                $("#txtcorreo").val(json.Correo);
-                $("#selectactivo").val(json.Activo == true ? 1 : 0);
-            }
-
-            $("#FormModal").modal("show");
-
-        }
-
-        $("#tabla tbody").on("click", '.btn-editar', function () {
-
-            var filaSeleccionada = $(this).closest("tr");
-
-            var data = tabladata.row(filaSeleccionada).data();
-            console.log(data);
-
-            abrirModal(data)
-
-        })
-
-        function Guardar() {
-
-
-        }
-    </script>
-
+    <script src="~/Scripts/Views/Inventario/index.js"></script>
 }
 

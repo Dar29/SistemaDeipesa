@@ -22,9 +22,9 @@ namespace Sistema.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult ObtenerCatalogoCategorias()
+        public JsonResult ObtenerMateriales()
         {
-            var categorias = cnCategoria.Listar();
+            var categorias = cnMaterial.Listar();
             return Json(categorias, JsonRequestBehavior.AllowGet);
         }
 

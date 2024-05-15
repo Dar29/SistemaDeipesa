@@ -44,6 +44,7 @@
     <Compile Include="CN_Categoria.cs" />
     <Compile Include="CN_Inventario.cs" />
     <Compile Include="CN_Material.cs" />
+    <Compile Include="CN_Monedas.cs" />
     <Compile Include="CN_Recursos.cs" />
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

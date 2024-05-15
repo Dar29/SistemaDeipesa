@@ -129,7 +129,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
+    <Compile Include="Controllers\MonedasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -484,11 +486,16 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\Views\Categorias\index.js" />
+    <Content Include="Scripts\Views\Inventario\index.js" />
     <Content Include="Scripts\Views\Materiales\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -509,12 +516,16 @@
     <Content Include="Views\Home\Inventario.cshtml" />
     <Content Include="Views\Home\Compras.cshtml" />
     <Content Include="Views\Home\Ventas.cshtml" />
+    <Content Include="Scripts\moment.min.js.map" />
+    <Content Include="Scripts\moment-with-locales.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categorias\" />
+    <Folder Include="Views\Inventario\" />
     <Folder Include="Views\Materiales\" />
+    <Folder Include="Views\Monedas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

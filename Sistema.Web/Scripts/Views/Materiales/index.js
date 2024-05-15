@@ -81,7 +81,7 @@ $(() => {
 });
 
 async function obtenerCategorias() {
-  const categorias = await $.get("/Materiales/ObtenerCatalogoCategorias");
+  const categorias = await $.get("/Categorias/ObtenerCatalogoCategorias");
   const select = $("#selectcategoria");
 
   select.select2({

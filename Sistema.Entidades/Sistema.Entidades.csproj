@@ -54,6 +54,7 @@
     <Compile Include="Inventario.cs" />
     <Compile Include="InventarioTracking.cs" />
     <Compile Include="Material.cs" />
+    <Compile Include="Moneda.cs" />
     <Compile Include="OrdenCompra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Utils\Resultado.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="VInventario.cs" />
+    <Compile Include="VInventarioTracking.cs" />
     <Compile Include="VMaterialesDetalle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
