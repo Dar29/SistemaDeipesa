@@ -14,5 +14,7 @@ namespace Sistema.Entidades
         public string Observacion { get; set; }
         public string Usuario { get; set; }
         public string DescripcionMaterial { get; set; }
+
+        public string Movimiento { get; set; }
     }
 }

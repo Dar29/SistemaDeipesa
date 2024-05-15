@@ -116,6 +116,7 @@ async function abrirModalTransacciones(id) {
     columns: [
       { data: "IdTracking" },
       { data: "Fecha" },
+      { data: "Movimiento" },
       { data: "Cantidad" },
       { data: "Observacion" },
       { data: "Usuario" },

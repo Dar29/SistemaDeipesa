@@ -91,6 +91,7 @@ namespace Sistema.Datos
                                 Observacion = dr["Observacion"] != DBNull.Value ? dr["Observacion"].ToString() : string.Empty,
                                 Usuario = dr["Usuario"] != DBNull.Value ? dr["Usuario"].ToString() : string.Empty,
                                 DescripcionMaterial = dr["DescripcionMaterial"] != DBNull.Value ? dr["DescripcionMaterial"].ToString() : string.Empty,
+                                Movimiento = dr["Movimiento"] != DBNull.Value ? dr["Movimiento"].ToString() : string.Empty
                             });
                         }
 
