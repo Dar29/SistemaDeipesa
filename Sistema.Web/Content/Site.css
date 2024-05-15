@@ -12869,3 +12869,70 @@ body {
     font-size: 0.75rem;
     border-radius: 0.375rem !important;
 }
+.light-animation {
+    animation: blink 1s infinite, flash 2s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flash {
+    0% {
+        box-shadow: 0 0 20px yellow;
+    }
+
+    50% {
+        box-shadow: 0 0 50px yellow;
+    }
+
+    100% {
+        box-shadow: 0 0 20px yellow;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    /* ancho barra */
+}
+
+::-webkit-scrollbar-track {
+    background: #042029;
+    /* color fondo barra */
+    opacity: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2b2b2b;
+    /* color barra */
+    border-radius: 50px;
+    /* borde barra */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #073545;
+}
+
+.cotenedorhead {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.sb-sidenav-menu{
+    overflow: hidden;
+}
+

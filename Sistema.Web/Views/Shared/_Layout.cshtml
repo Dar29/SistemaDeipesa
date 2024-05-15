@@ -72,13 +72,19 @@
         }
     </style>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
+
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar" style="background-color: #042029">
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars text-white"></i></button>
+
+        <span class="navbar-brand mx-auto text-white animate__animated animate__bounceIn" style="font-size: 24px;">Sistema de almacenamiento y venta de materiales</span>
+
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
@@ -89,7 +95,7 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#!">Mi cuenta</a></li>
                     <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
@@ -102,10 +108,10 @@
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
+                <div class="sb-sidenav-menu"  style="background-color: #042029">
                     <div class="row" style="text-align: center;">
                         <a href="@Url.Action("Index", "Home")">
-                            <img src="~/Content/image/logo.png" alt="fondo" style="max-width: 150px; max-height: 150px;" />
+                            <img src="~/Content/image/logo3.png" alt="fondo" style="max-width: 150px; max-height: 150px;" />
                         </a>
                     </div>
                     <div class="nav">
@@ -158,11 +164,6 @@
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; DEIPESA 2024</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
                     </div>
                 </div>
             </footer>

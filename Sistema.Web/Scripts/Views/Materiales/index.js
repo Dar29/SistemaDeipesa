@@ -16,7 +16,15 @@ $(() => {
       { data: "Nombre" },
       { data: "Descripcion" },
       { data: "Categoria" },
-      { data: "Estado" },
+        {
+            "data": "Estado", "render": function (valor) {
+                if (valor == "Activo") {
+                    return '<span class="badge bg-success"><i class="fas fa-check"></i></span>'
+                } else {
+                    return '<span class="badge bg-danger"><i class="fas fa-xmark"></i></span>'
+                }
+            }
+        },
       {
         defaultContent:
           '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
