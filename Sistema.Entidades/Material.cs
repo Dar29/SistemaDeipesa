@@ -10,8 +10,8 @@ namespace Sistema.Entidades
     public class Material
     {
         public int IdMaterial { get; set; }
-        public EstadoMaterial IdEstadoMaterial { get; set; }
-        public CategoriaMaterial IdCategoria { get; set; }
+        public int IdEstadoMaterial { get; set; }
+        public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
     }

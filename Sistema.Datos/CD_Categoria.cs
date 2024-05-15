@@ -13,41 +13,37 @@ namespace Sistema.Datos
     {
         public List<CategoriaMaterial> Listar()
         { 
-            List<CategoriaMaterial> lista = new List<CategoriaMaterial>();
+            var lista = new List<CategoriaMaterial>();
 
             try
             {
-                using (SqlConnection oconexion = new SqlConnection(Conexion.cn)) {
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
+                {
 
                     string query = "select * from Tbl_Categoria";
-                    SqlCommand cmd = new SqlCommand(query, oconexion);
-                    cmd.CommandType = CommandType.Text;
+                    SqlCommand cmd = new SqlCommand(query, oconexion)
+                    {
+                        CommandType = CommandType.Text
+                    };
 
                     oconexion.Open();
 
-                    using (SqlDataReader dr = cmd.ExecuteReader()) {
-                        
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+
                         while (dr.Read())
                         {
                             lista.Add(new CategoriaMaterial
                             {
                                 IdCategoria = dr["IdCategoria"] != DBNull.Value ? Convert.ToInt32(dr["IdCategoria"]) : 0,
                                 Descripcion = dr["Descripcion"] != DBNull.Value ? dr["Descripcion"].ToString() : string.Empty,
-
                             });
                         }
-                        
+
                     }
                 }
-
-
             }
-            catch (Exception)
-            {
-
-                lista = new List<CategoriaMaterial>();
-            }
-
+            catch { }
 
             return lista;
         }

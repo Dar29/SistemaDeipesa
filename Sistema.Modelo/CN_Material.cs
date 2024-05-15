@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sistema.Datos;
 using Sistema.Entidades;
+using Sistema.Entidades.Utils;
 
 namespace Sistema.Modelo
 {
@@ -17,5 +18,13 @@ namespace Sistema.Modelo
             return objSistemaDatos.Listar();
         }
 
+        public Resultado GuardarOActualizar(Material obj)
+            => objSistemaDatos.GuardarOActualizar(obj);
+
+        public Material ObtenerPorId(int id)
+            => objSistemaDatos.ObtenerPorId(id);
+
+        public Resultado Desactivar(int id)
+            => objSistemaDatos.Desactivar(id);
     }
 }

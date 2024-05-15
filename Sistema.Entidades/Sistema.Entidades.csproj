@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogo.cs" />
     <Compile Include="CategoriaMaterial.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="DetalleFactura.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="TipoMovimientoInventario.cs" />
     <Compile Include="TipoPagos.cs" />
     <Compile Include="Usuarios.cs" />
+    <Compile Include="Utils\Resultado.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="VInventario.cs" />
     <Compile Include="VMaterialesDetalle.cs" />
