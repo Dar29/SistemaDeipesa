@@ -172,6 +172,10 @@ p {
     margin-bottom: 1rem;
 }
 
+#modalDetalle .jarviswidget {
+    margin: 0 0 10px;
+}
+
 abbr[title] {
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;

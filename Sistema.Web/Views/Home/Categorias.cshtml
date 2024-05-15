@@ -42,31 +42,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-light">
-                <h5 class="modal-title" id="FormModalLabel">Materiales</h5>
-                <button type="button" class="btn-close-white" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title" id="FormModalLabel">Categorias</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body g-4">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <label for="txtidusuario" class="form-label">ID</label>
-                        <input type="text" disabled class="form-control" id="txtidusuario">
+                    <div class="col-sm-6"  style="display: none;">
+                        <label for="txtid" class="form-label">ID</label>
+                        <input type="text" disabled class="form-control" id="txtid">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtnombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="txtnombres">
+                        <label for="txtdescripcion" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="txtdescripcion">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtapellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="txtapellidos">
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="txtcorreo" class="form-label">Correo</label>
-                        <input type="text" class="form-control" id="txtcorreo">
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="selectactivo" class="form-label">Activo</label>
+                        <label for="selectactivo" class="form-label">Estado</label>
                         <select class="form-select" id="selectactivo">
                             <option value="1">Si</option>
                             <option value="0">No</option>
@@ -136,22 +128,17 @@
 
         function abrirModal(json) {
 
-            $("#txtidusuario").val("");
-            $("#txtnombres").val("");
-            $("#txtnombres").val("");
-            $("#txtapellidos").val("");
-            $("#txtcorreo").val("");
-            $("#selectactivo").val(1);
+            $("#txtid").val("");
+            $("#txtdescripcion").val("");
+            $("#selectactivo").val("");
 
 
 
             if (json != null)
             {
-                $("#txtidusuario").val(json.IdUsuario);
-                $("#txtnombres").val(json.Nombres);
-                $("#txtapellidos").val(json.Apellidos);
-                $("#txtcorreo").val(json.Correo);
-                $("#selectactivo").val(json.Activo == true ? 1 : 0);
+                $("#txtid").val(json.IdCategoria);
+                $("#txtdescripcion").val(json.Descripcion);
+                $("#selectactivo").val(json.Estado == true ? 1 : 0);
             }
 
             $("#FormModal").modal("show");

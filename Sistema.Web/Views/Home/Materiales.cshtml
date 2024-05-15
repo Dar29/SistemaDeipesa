@@ -29,10 +29,7 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Categoría</th>
-                    <th>Precio Unitario</th>
-                    <th>Moneda</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
+                    <th>Activo</th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,27 +46,24 @@
         <div class="modal-content">
             <div class="modal-header bg-dark text-light">
                 <h5 class="modal-title" id="FormModalLabel">Materiales</h5>
-                <button type="button" class="btn-close-white" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body g-4">
                 <div class="row">
+
                     <div class="col-sm-6">
-                        <label for="txtidusuario" class="form-label">ID</label>
-                        <input type="text" disabled class="form-control" id="txtidusuario">
+                        <label for="txtnombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="txtnombre">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtnombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="txtnombres">
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label for="txtapellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="txtapellidos">
+                        <label for="txtdescripcion" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="txtdescripcion">
                     </div>
                     <div class="col-sm-6">
-                        <label for="txtcorreo" class="form-label">Correo</label>
-                        <input type="text" class="form-control" id="txtcorreo">
+                        <label for="selectcategoria" class="form-label">Categoria</label>
+                        <select class="form-select" id="selectcategoria">
+                        </select>
                     </div>
                     <div class="col-sm-6">
                         <label for="selectactivo" class="form-label">Activo</label>
@@ -111,9 +105,6 @@
                 { "data": "Nombre" },
                 { "data": "Descripcion" },
                 { "data": "Categoria" },
-                { "data": "PrecioUnitario" },
-                { "data": "Moneda" },
-                { "data": "Stock" },
                 { "data": "Estado" },
                 {
                     "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
@@ -150,22 +141,20 @@
 
         function abrirModal(json) {
 
-            $("#txtidusuario").val("");
-            $("#txtnombres").val("");
-            $("#txtnombres").val("");
-            $("#txtapellidos").val("");
-            $("#txtcorreo").val("");
-            $("#selectactivo").val(1);
-
+            $("#txtidmaterial").val("");
+            $("#txtnombre").val("");
+            $("#txtdescripcion").val("");
+            $("#selectcategoria").val("");
+            $("#selectactivo").val("");
 
 
             if (json != null)
             {
-                $("#txtidusuario").val(json.IdUsuario);
-                $("#txtnombres").val(json.Nombres);
-                $("#txtapellidos").val(json.Apellidos);
-                $("#txtcorreo").val(json.Correo);
-                $("#selectactivo").val(json.Activo == true ? 1 : 0);
+                $("#txtidmaterial").val(json.IdMaterial);
+                $("#txtnombre").val(json.Nombre);
+                $("#txtdescripcion").val(json.Descripcion);
+                $("#selectcategoria").val(json.Categoria);
+                $("#selectactivo").val(json.Estado == true ? 1 : 0);
             }
 
             $("#FormModal").modal("show");
@@ -177,11 +166,11 @@
             var filaSeleccionada = $(this).closest("tr");
 
             var data = tabladata.row(filaSeleccionada).data();
-            console.log(data);
 
             abrirModal(data)
 
         })
+
 
         function Guardar() {
 
