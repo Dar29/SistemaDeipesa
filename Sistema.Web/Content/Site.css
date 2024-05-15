@@ -12869,24 +12869,36 @@ body {
     font-size: 0.75rem;
     border-radius: 0.375rem !important;
 }
-@keyframes blink-animation {
+.light-animation {
+    animation: blink 1s infinite, flash 2s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
     50% {
-        visibility: hidden;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
 
-@-webkit-keyframes blink-animation {
-    50% {
-        visibility: hidden;
+@keyframes flash {
+    0% {
+        box-shadow: 0 0 20px yellow;
     }
-}
 
-.blink {
-    animation: blink-animation 1s steps(5, start) infinite;
-    -webkit-animation: blink-animation 1s steps(5, start) infinite;
-}
-.carousel-image {
-    opacity: 0.7; /* Ajusta la opacidad según lo necesites */
+    50% {
+        box-shadow: 0 0 50px yellow;
+    }
+
+    100% {
+        box-shadow: 0 0 20px yellow;
+    }
 }
 
 
