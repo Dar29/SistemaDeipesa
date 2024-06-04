@@ -16,15 +16,16 @@ $(() => {
       { data: "Nombre" },
       { data: "Descripcion" },
       { data: "Categoria" },
-        {
-            "data": "Estado", "render": function (valor) {
-                if (valor == "Activo") {
-                    return '<span class="badge bg-success"><i class="fas fa-check"></i></span>'
-                } else {
-                    return '<span class="badge bg-danger"><i class="fas fa-xmark"></i></span>'
-                }
-            }
+      {
+        data: "Estado",
+        render: function (valor) {
+          if (valor == "Activo") {
+            return '<span class="badge bg-success"><i class="fas fa-check"></i></span>';
+          } else {
+            return '<span class="badge bg-danger"><i class="fas fa-xmark"></i></span>';
+          }
         },
+      },
       {
         defaultContent:
           '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
@@ -84,9 +85,24 @@ $(() => {
   });
 
   obtenerCategorias();
-
+  obtenerMonedas();
   validarFormulario();
 });
+
+async function obtenerMonedas() {
+  const monedas = await $.get("/Monedas/ObtenerMonedas");
+  const select = $("#ddlMoneda");
+
+  select.select2({
+    dropdownParent: $("#FormModal"),
+    width: "100%",
+  });
+
+  monedas.forEach(function (categoria) {
+    var option = new Option(categoria.Descripcion, categoria.IdMoneda);
+    select.append(option);
+  });
+}
 
 async function obtenerCategorias() {
   const categorias = await $.get("/Categorias/ObtenerCatalogoCategorias");
@@ -129,6 +145,10 @@ function validarFormulario() {
       // IdCategoria: { required: true },
       Nombre: { required: true },
       Descripcion: { required: true },
+      IdMoneda: { required: true },
+      PrecioUnitario: {
+        required: true,
+      },
     },
     messages: {
       IdEstadoMaterial: { required: "Debe seleccionar un estado del material" },
@@ -136,6 +156,12 @@ function validarFormulario() {
       Nombre: { required: "Debe proporcionar un nombre del material" },
       Descripcion: {
         required: "Debe proporcionar una descripcion del material",
+      },
+      IdMoneda: {
+        required: "Debe seleccionar una moneda para la venta",
+      },
+      PrecioUnitario: {
+        required: "Debe digitar el precio unitario del material",
       },
     },
     submitHandler: (form) => {
