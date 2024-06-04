@@ -139,6 +139,7 @@
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
     <Compile Include="Controllers\MonedasController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -506,6 +507,7 @@
     <Content Include="Scripts\Views\Categorias\index.js" />
     <Content Include="Scripts\Views\Inventario\index.js" />
     <Content Include="Scripts\Views\Materiales\index.js" />
+    <Content Include="Scripts\Views\Proveedores\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -527,6 +529,7 @@
     <Content Include="Views\Home\Ventas.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
+    <Content Include="Views\Proveedores\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

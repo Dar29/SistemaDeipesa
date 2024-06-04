@@ -59,6 +59,7 @@
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\MaterialServicio.cs" />
+    <Compile Include="Servicios\ProveedorServicio.cs" />
     <Compile Include="Servicios\ServicioBase.cs" />
   </ItemGroup>
   <ItemGroup>
