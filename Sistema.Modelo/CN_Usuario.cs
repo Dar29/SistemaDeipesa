@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sistema.Datos;
 using Sistema.Entidades;
+using Sistema.Modelo.Recursos;
 
 namespace Sistema.Modelo
 {
@@ -51,11 +52,11 @@ namespace Sistema.Modelo
 
                 if (respuesta)
                 {
-                    obj.Contrasenia = CN_Recursos.ConvertirSha256(clave);
+                    obj.Contrasenia = Encriptador.Encriptar(clave);
                     return objSistemaDatos.Registrar(obj, out Mensaje);
                 }
 
-                obj.Contrasenia = CN_Recursos.ConvertirSha256(clave);
+                obj.Contrasenia = Encriptador.Encriptar(clave);
 
                 return objSistemaDatos.Registrar(obj, out Mensaje);
             }

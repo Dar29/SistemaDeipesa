@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - DEIPESA</title>
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/seguridad.css">
+    <link rel="stylesheet" href="~/Content/sweetalert.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+
+    <style>
+        .error {
+            font-size: 10px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="landing"></div>
+    @RenderBody()
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center small">
+                <div class="text-white">Copyright &copy; DEIPESA 2024</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/complementos")
+<script type="text/javascript" src="~/Scripts/select2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+<script type="text/javascript" src="~/Scripts/sweetalert.min.js"></script>
+@RenderSection("scripts", required: false)
+
+</html>
+

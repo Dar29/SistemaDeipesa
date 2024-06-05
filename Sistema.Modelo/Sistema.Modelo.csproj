@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +62,8 @@
     <Compile Include="Servicios\MaterialServicio.cs" />
     <Compile Include="Servicios\ProveedorServicio.cs" />
     <Compile Include="Servicios\ServicioBase.cs" />
+    <Compile Include="Servicios\SeguridadServicio.cs" />
+    <Compile Include="Recursos\Encriptador.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sistema.Datos\Sistema.Datos.csproj">

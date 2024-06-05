@@ -1,0 +1,32 @@
+﻿@model Sistema.Web.ViewModel.LoginViewModel
+
+@{
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_SeguridadLayout.cshtml";
+}
+
+<div class="card card-login p-4">
+    <div class="card-title">
+        <h2 class="text-center">Inicio de sesion</h2>
+        <h5 class="text-center text-muted">Bienvenido al sistema Diepsa</h5>
+        <p class="text-center text-muted">Ingresa tus credenciales para continuar</p>
+    </div>
+    <form id="frmLogin" name="frmLogin" class="card-body row gap-4">
+        <div class="col-12">
+            <label for="txtUsuario" class="form-label">Usuario:</label>
+            <input type="text" class="form-control" id="txtUsuario" name="Usuario">
+        </div>
+
+        <div class="col-12">
+            <label for="txtContraseña" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" id="txtContraseña" name="Contraseña">
+        </div>
+        <div class="col-12 justify-content-end">
+            <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Views/Seguridad/login.js"></script>
+} 
