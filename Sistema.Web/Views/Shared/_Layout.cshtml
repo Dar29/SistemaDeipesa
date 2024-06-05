@@ -140,7 +140,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-hand-holding-dollar"></i></div>
                             Ventas
                         </a>
-                        <a class="nav-link" href="@Url.Action("Compras","Home")">
+                        <a class="nav-link" href="@Url.Action("Index","Compras")">
                             <div class="sb-nav-link-icon"><i class="fas fa-cart-shopping"></i></div>
                             Compras
                         </a>
@@ -178,7 +178,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
-@*<li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
@@ -510,6 +511,8 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\Views\Categorias\index.js" />
+    <Content Include="Scripts\Views\Compras\index.js" />
+    <Content Include="Scripts\Views\Compras\nueva.js" />
     <Content Include="Scripts\Views\Inventario\index.js" />
     <Content Include="Scripts\Views\Materiales\index.js" />
     <Content Include="Scripts\Views\Proveedores\index.js" />
@@ -538,6 +541,8 @@
     <Content Include="Views\Proveedores\Index.cshtml" />
     <Content Include="Views\Seguridad\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_SeguridadLayout.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Compras\Nueva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,6 +36,8 @@ namespace Sistema.Entidades.Modelos
 
         public int IdMoneda { get; set; }
 
+        public int Cantidad { get; set; }
+
         public decimal PrecioUnitario { get; set; }
 
         public virtual Tbl_Categoria Tbl_Categoria { get; set; }

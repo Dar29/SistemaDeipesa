@@ -34,18 +34,18 @@ namespace Sistema.Web.Filters
 
             if (esRutaPublica) return;
 
-            if (controlador == "Home" &&  accion == "Index") 
+            //if (controlador != "Home" || accion != "Index") 
+            //{
+            //    filterContext.Result = new HttpUnauthorizedResult();
+
+            //    return;
+            //}
+
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary()
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary()
-                {
-                    { "controller", "Seguridad" },
-                    { "action", "IniciarSesion" },
-                });
-
-                return;
-            }
-
-            filterContext.Result = new HttpUnauthorizedResult();
+                { "controller", "Seguridad" },
+                { "action", "IniciarSesion" },
+            });
         }
 
     }
