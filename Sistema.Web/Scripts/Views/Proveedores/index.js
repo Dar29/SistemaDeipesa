@@ -3,6 +3,11 @@
 var datatable;
 
 $(() => {
+  $("#txtBuscar").on("change", (e) => {
+    const texto = $(e.target).val();
+    datatable.search(texto).draw()
+  });
+
   datatable = $("#tabla").DataTable({
     responsive: true,
     ordering: true,
