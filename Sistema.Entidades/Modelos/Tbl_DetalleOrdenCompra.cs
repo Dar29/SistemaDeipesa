@@ -21,6 +21,10 @@ namespace Sistema.Entidades.Modelos
 
         public virtual Tbl_Material Tbl_Material { get; set; }
 
+        public virtual Tbl_Material Tbl_Material1 { get; set; }
+
         public virtual Tbl_OrdenCompra Tbl_OrdenCompra { get; set; }
+
+        public virtual Tbl_OrdenCompra Tbl_OrdenCompra1 { get; set; }
     }
 }

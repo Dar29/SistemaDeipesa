@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,7 +73,6 @@
     <Compile Include="Modelos\Tbl_EstadoMaterial.cs" />
     <Compile Include="Modelos\Tbl_EstadoOrdenCompra.cs" />
     <Compile Include="Modelos\Tbl_Factura.cs" />
-    <Compile Include="Modelos\Tbl_Inventario.cs" />
     <Compile Include="Modelos\Tbl_InventarioTracking.cs" />
     <Compile Include="Modelos\Tbl_Material.cs" />
     <Compile Include="Modelos\Tbl_Moneda.cs" />

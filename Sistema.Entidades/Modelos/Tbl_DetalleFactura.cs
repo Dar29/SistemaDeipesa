@@ -23,6 +23,10 @@ namespace Sistema.Entidades.Modelos
 
         public virtual Tbl_Factura Tbl_Factura { get; set; }
 
+        public virtual Tbl_Factura Tbl_Factura1 { get; set; }
+
         public virtual Tbl_Material Tbl_Material { get; set; }
+
+        public virtual Tbl_Material Tbl_Material1 { get; set; }
     }
 }

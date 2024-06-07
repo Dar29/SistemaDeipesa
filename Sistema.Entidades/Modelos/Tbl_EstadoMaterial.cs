@@ -12,6 +12,7 @@ namespace Sistema.Entidades.Modelos
         public Tbl_EstadoMaterial()
         {
             Tbl_Material = new HashSet<Tbl_Material>();
+            Tbl_Material1 = new HashSet<Tbl_Material>();
         }
 
         [Key]
@@ -24,5 +25,8 @@ namespace Sistema.Entidades.Modelos
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Material> Tbl_Material { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Material> Tbl_Material1 { get; set; }
     }
 }

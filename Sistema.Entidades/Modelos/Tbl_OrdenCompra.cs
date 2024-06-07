@@ -12,6 +12,7 @@ namespace Sistema.Entidades.Modelos
         public Tbl_OrdenCompra()
         {
             Tbl_DetalleOrdenCompra = new HashSet<Tbl_DetalleOrdenCompra>();
+            Tbl_DetalleOrdenCompra1 = new HashSet<Tbl_DetalleOrdenCompra>();
         }
 
         [Key]
@@ -34,9 +35,16 @@ namespace Sistema.Entidades.Modelos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_DetalleOrdenCompra> Tbl_DetalleOrdenCompra { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_DetalleOrdenCompra> Tbl_DetalleOrdenCompra1 { get; set; }
+
         public virtual Tbl_EstadoOrdenCompra Tbl_EstadoOrdenCompra { get; set; }
 
+        public virtual Tbl_EstadoOrdenCompra Tbl_EstadoOrdenCompra1 { get; set; }
+
         public virtual Tbl_Proveedor Tbl_Proveedor { get; set; }
+
+        public virtual Tbl_Proveedor Tbl_Proveedor1 { get; set; }
 
         public virtual Tbl_Usuario Tbl_Usuario { get; set; }
     }

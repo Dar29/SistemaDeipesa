@@ -12,8 +12,10 @@ namespace Sistema.Entidades.Modelos
         public Tbl_Material()
         {
             Tbl_DetalleFactura = new HashSet<Tbl_DetalleFactura>();
+            Tbl_DetalleFactura1 = new HashSet<Tbl_DetalleFactura>();
             Tbl_DetalleOrdenCompra = new HashSet<Tbl_DetalleOrdenCompra>();
-            Tbl_Inventario = new HashSet<Tbl_Inventario>();
+            Tbl_DetalleOrdenCompra1 = new HashSet<Tbl_DetalleOrdenCompra>();
+            Tbl_InventarioTracking = new HashSet<Tbl_InventarioTracking>();
         }
 
         [Key]
@@ -36,22 +38,32 @@ namespace Sistema.Entidades.Modelos
 
         public int IdMoneda { get; set; }
 
-        public int Cantidad { get; set; }
-
         public decimal PrecioUnitario { get; set; }
 
+        public int Cantidad { get; set; }
+
         public virtual Tbl_Categoria Tbl_Categoria { get; set; }
+
+        public virtual Tbl_Categoria Tbl_Categoria1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_DetalleFactura> Tbl_DetalleFactura { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_DetalleFactura> Tbl_DetalleFactura1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_DetalleOrdenCompra> Tbl_DetalleOrdenCompra { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_DetalleOrdenCompra> Tbl_DetalleOrdenCompra1 { get; set; }
 
         public virtual Tbl_EstadoMaterial Tbl_EstadoMaterial { get; set; }
 
+        public virtual Tbl_EstadoMaterial Tbl_EstadoMaterial1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Inventario> Tbl_Inventario { get; set; }
+        public virtual ICollection<Tbl_InventarioTracking> Tbl_InventarioTracking { get; set; }
 
         public virtual Tbl_Moneda Tbl_Moneda { get; set; }
     }

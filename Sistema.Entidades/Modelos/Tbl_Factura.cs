@@ -12,6 +12,7 @@ namespace Sistema.Entidades.Modelos
         public Tbl_Factura()
         {
             Tbl_DetalleFactura = new HashSet<Tbl_DetalleFactura>();
+            Tbl_DetalleFactura1 = new HashSet<Tbl_DetalleFactura>();
         }
 
         [Key]
@@ -38,8 +39,13 @@ namespace Sistema.Entidades.Modelos
 
         public virtual Tbl_Cliente Tbl_Cliente { get; set; }
 
+        public virtual Tbl_Cliente Tbl_Cliente1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_DetalleFactura> Tbl_DetalleFactura { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_DetalleFactura> Tbl_DetalleFactura1 { get; set; }
 
         public virtual Tbl_TipoPagos Tbl_TipoPagos { get; set; }
 

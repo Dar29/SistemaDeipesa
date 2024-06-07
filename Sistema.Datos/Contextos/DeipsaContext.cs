@@ -20,7 +20,6 @@ namespace Sistema.Datos.Contextos
         public virtual DbSet<Tbl_EstadoMaterial> Tbl_EstadoMaterial { get; set; }
         public virtual DbSet<Tbl_EstadoOrdenCompra> Tbl_EstadoOrdenCompra { get; set; }
         public virtual DbSet<Tbl_Factura> Tbl_Factura { get; set; }
-        public virtual DbSet<Tbl_Inventario> Tbl_Inventario { get; set; }
         public virtual DbSet<Tbl_InventarioTracking> Tbl_InventarioTracking { get; set; }
         public virtual DbSet<Tbl_Material> Tbl_Material { get; set; }
         public virtual DbSet<Tbl_Moneda> Tbl_Moneda { get; set; }
@@ -39,6 +38,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_Categoria>()
                 .HasMany(e => e.Tbl_Material)
                 .WithRequired(e => e.Tbl_Categoria)
+                .HasForeignKey(e => e.IdCategoria)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_Categoria>()
+                .HasMany(e => e.Tbl_Material1)
+                .WithRequired(e => e.Tbl_Categoria1)
+                .HasForeignKey(e => e.IdCategoria)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_Cliente>()
@@ -76,6 +82,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_Cliente>()
                 .HasMany(e => e.Tbl_Factura)
                 .WithRequired(e => e.Tbl_Cliente)
+                .HasForeignKey(e => e.IdCliente)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_Cliente>()
+                .HasMany(e => e.Tbl_Factura1)
+                .WithRequired(e => e.Tbl_Cliente1)
+                .HasForeignKey(e => e.IdCliente)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_DetalleFactura>()
@@ -93,6 +106,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_EstadoMaterial>()
                 .HasMany(e => e.Tbl_Material)
                 .WithRequired(e => e.Tbl_EstadoMaterial)
+                .HasForeignKey(e => e.IdEstadoMaterial)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_EstadoMaterial>()
+                .HasMany(e => e.Tbl_Material1)
+                .WithRequired(e => e.Tbl_EstadoMaterial1)
+                .HasForeignKey(e => e.IdEstadoMaterial)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_EstadoOrdenCompra>()
@@ -102,6 +122,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_EstadoOrdenCompra>()
                 .HasMany(e => e.Tbl_OrdenCompra)
                 .WithRequired(e => e.Tbl_EstadoOrdenCompra)
+                .HasForeignKey(e => e.IdEstadoOrden)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_EstadoOrdenCompra>()
+                .HasMany(e => e.Tbl_OrdenCompra1)
+                .WithRequired(e => e.Tbl_EstadoOrdenCompra1)
+                .HasForeignKey(e => e.IdEstadoOrden)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_Factura>()
@@ -112,15 +139,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_Factura>()
                 .HasMany(e => e.Tbl_DetalleFactura)
                 .WithRequired(e => e.Tbl_Factura)
+                .HasForeignKey(e => e.IdFactura)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Tbl_Inventario>()
-                .Property(e => e.Observacion)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Tbl_Inventario>()
-                .HasMany(e => e.Tbl_InventarioTracking)
-                .WithRequired(e => e.Tbl_Inventario)
+            modelBuilder.Entity<Tbl_Factura>()
+                .HasMany(e => e.Tbl_DetalleFactura1)
+                .WithRequired(e => e.Tbl_Factura1)
+                .HasForeignKey(e => e.IdFactura)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_InventarioTracking>()
@@ -138,15 +163,29 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_Material>()
                 .HasMany(e => e.Tbl_DetalleFactura)
                 .WithRequired(e => e.Tbl_Material)
+                .HasForeignKey(e => e.IdMaterial)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_Material>()
+                .HasMany(e => e.Tbl_DetalleFactura1)
+                .WithRequired(e => e.Tbl_Material1)
+                .HasForeignKey(e => e.IdMaterial)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_Material>()
                 .HasMany(e => e.Tbl_DetalleOrdenCompra)
                 .WithRequired(e => e.Tbl_Material)
+                .HasForeignKey(e => e.IdMaterial)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_Material>()
-                .HasMany(e => e.Tbl_Inventario)
+                .HasMany(e => e.Tbl_DetalleOrdenCompra1)
+                .WithRequired(e => e.Tbl_Material1)
+                .HasForeignKey(e => e.IdMaterial)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_Material>()
+                .HasMany(e => e.Tbl_InventarioTracking)
                 .WithRequired(e => e.Tbl_Material)
                 .WillCascadeOnDelete(false);
 
@@ -162,6 +201,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_OrdenCompra>()
                 .HasMany(e => e.Tbl_DetalleOrdenCompra)
                 .WithRequired(e => e.Tbl_OrdenCompra)
+                .HasForeignKey(e => e.IdOrdenCompra)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_OrdenCompra>()
+                .HasMany(e => e.Tbl_DetalleOrdenCompra1)
+                .WithRequired(e => e.Tbl_OrdenCompra1)
+                .HasForeignKey(e => e.IdOrdenCompra)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_Proveedor>()
@@ -183,6 +229,13 @@ namespace Sistema.Datos.Contextos
             modelBuilder.Entity<Tbl_Proveedor>()
                 .HasMany(e => e.Tbl_OrdenCompra)
                 .WithRequired(e => e.Tbl_Proveedor)
+                .HasForeignKey(e => e.IdProveedor)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tbl_Proveedor>()
+                .HasMany(e => e.Tbl_OrdenCompra1)
+                .WithRequired(e => e.Tbl_Proveedor1)
+                .HasForeignKey(e => e.IdProveedor)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tbl_TipoMovimientoInventario>()

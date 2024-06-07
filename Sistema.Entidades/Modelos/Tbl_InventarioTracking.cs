@@ -11,8 +11,6 @@ namespace Sistema.Entidades.Modelos
         [Key]
         public int IdTracking { get; set; }
 
-        public int IdInventario { get; set; }
-
         public int IdMov { get; set; }
 
         public int Cantidad { get; set; }
@@ -24,9 +22,11 @@ namespace Sistema.Entidades.Modelos
 
         public int IdUsuario { get; set; }
 
-        public virtual Tbl_Inventario Tbl_Inventario { get; set; }
+        public int IdMaterial { get; set; }
 
         public virtual Tbl_TipoMovimientoInventario Tbl_TipoMovimientoInventario { get; set; }
+
+        public virtual Tbl_Material Tbl_Material { get; set; }
 
         public virtual Tbl_Usuario Tbl_Usuario { get; set; }
     }
