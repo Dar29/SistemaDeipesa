@@ -137,11 +137,11 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
     <Compile Include="Controllers\MonedasController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Filters\SessionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -531,12 +531,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Reportes.cshtml" />
-    <Content Include="Views\Home\Materiales.cshtml" />
     <Content Include="Views\Home\Usuarios.cshtml" />
-    <Content Include="Views\Home\Categorias.cshtml" />
-    <Content Include="Views\Home\Inventario.cshtml" />
     <Content Include="Views\Home\Compras.cshtml" />
-    <Content Include="Views\Home\Ventas.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Proveedores\Index.cshtml" />
@@ -544,13 +540,14 @@
     <Content Include="Views\Shared\_SeguridadLayout.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Compras\Nueva.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Materiales\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Categorias\" />
     <Folder Include="Views\Inventario\" />
-    <Folder Include="Views\Materiales\" />
     <Folder Include="Views\Monedas\" />
   </ItemGroup>
   <ItemGroup>

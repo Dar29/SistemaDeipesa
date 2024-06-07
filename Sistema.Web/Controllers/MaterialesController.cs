@@ -24,6 +24,8 @@ namespace Sistema.Web.Controllers
             _materialServicio = new MaterialServicio();
         }
 
+        public ActionResult Index() => View();
+
         [HttpGet]
         public JsonResult ObtenerMateriales()
         {

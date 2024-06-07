@@ -44,10 +44,6 @@ namespace Sistema.Web.Controllers
         {
             return View();
         }
-        public ActionResult Ventas()
-        {
-            return View();
-        }
 
         [HttpGet]
         public JsonResult ListaUsuarios()
