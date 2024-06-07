@@ -5,22 +5,26 @@ var datatable;
 $(() => {
   $("#txtBuscar").on("change", (e) => {
     const texto = $(e.target).val();
-    datatable.search(texto).draw()
+    datatable.search(texto).draw();
   });
-  
+
   datatable = $("#tabla").DataTable({
     responsive: true,
     ordering: true,
     ajax: {
-      url: "/Home/ListaMateriales",
+      url: "/Materiales/ObtenerMateriales",
       type: "GET",
       dataType: "json",
+      dataSrc: "",
     },
     columns: [
       { data: "IdMaterial" },
       { data: "Nombre" },
       { data: "Descripcion" },
-      { data: "Categoria" },
+      { data: "DescripcionCategoria" },
+      { data: "PrecioUnitario" },
+      { data: "DescripcionMoneda" },
+      { data: "Cantidad" },
       {
         data: "Estado",
         render: function (valor) {
@@ -33,11 +37,14 @@ $(() => {
       },
       {
         defaultContent:
+          "<div>" +
           '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
-          '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+          '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+          "</div>",
         orderable: false,
         searchable: false,
-        width: "90px",
+        responsivePriority: -1,
+        width: "60px",
       },
     ],
     language: {
@@ -129,11 +136,15 @@ function abrirModal(data) {
   $("#txtnombre").val("");
   $("#txtdescripcion").val("");
   $("#selectactivo").val("");
+  $("#txtPrecioUnitario").val("");
+  $("#ddlMoneda").val("").trigger("change");
 
   if (data) {
     $("#txtidmaterial").val(data.IdMaterial);
     $("#txtnombre").val(data.Nombre);
     $("#txtdescripcion").val(data.Descripcion);
+    $("#txtPrecioUnitario").val(data.PrecioUnitario);
+    $("#ddlMoneda").val(data.IdMoneda).trigger("change");
     $("#selectcategoria").val(data.IdCategoria).trigger("change");
     $("#selectactivo")
       .val(data.IdEstadoMaterial ? 1 : 0)
@@ -147,7 +158,6 @@ function validarFormulario() {
   $("form[name='frmMaterial']").validate({
     rules: {
       IdEstadoMaterial: { required: true },
-      // IdCategoria: { required: true },
       Nombre: { required: true },
       Descripcion: { required: true },
       IdMoneda: { required: true },

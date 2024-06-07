@@ -1,5 +1,6 @@
 ﻿using Sistema.Entidades.Modelos;
 using Sistema.Entidades.Utils;
+using Sistema.Modelo.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -45,6 +46,31 @@ namespace Sistema.Modelo.Servicios
             {
                 return new Resultado(false, ex.Message);
             }
+        }
+
+        public IEnumerable<MaterialDto> ObtenerTodos()
+        {
+            var materiales = _contexto.Tbl_Material.Select(x => new MaterialDto
+            {
+                IdMaterial = x.IdMaterial,
+                Cantidad = x.Cantidad,
+                Descripcion = x.Descripcion,
+                Estado = x.Tbl_EstadoMaterial.Descripcion,
+                DescripcionMoneda = x.Tbl_Moneda.Descripcion,
+                Nombre = x.Nombre,
+                DescripcionCategoria = x.Tbl_Categoria.Descripcion,
+                PrecioUnitario = x.PrecioUnitario
+            }).ToList();
+
+            return materiales;
+        }
+
+        public Tbl_Material ObtenerPorId(int id)
+        {
+            _contexto.Configuration.ProxyCreationEnabled = false;
+            var material = _contexto.Tbl_Material.FirstOrDefault(x => x.IdMaterial == id);
+
+            return material;
         }
     }
 }

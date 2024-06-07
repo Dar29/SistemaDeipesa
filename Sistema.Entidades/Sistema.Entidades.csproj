@@ -81,6 +81,7 @@
     <Compile Include="Modelos\Tbl_TipoMovimientoInventario.cs" />
     <Compile Include="Modelos\Tbl_TipoPagos.cs" />
     <Compile Include="Modelos\Tbl_Usuario.cs" />
+    <Compile Include="Modelos\temp\temp.cs" />
     <Compile Include="Moneda.cs" />
     <Compile Include="OrdenCompra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

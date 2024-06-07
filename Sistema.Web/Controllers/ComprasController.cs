@@ -41,5 +41,13 @@ namespace Sistema.Web.Controllers
 
             return Json(listado, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult Anular(int id)
+        {
+            var listado = _servicio.AnularCompra(id);
+
+            return Json(listado, JsonRequestBehavior.AllowGet);
+        }
     }
 }

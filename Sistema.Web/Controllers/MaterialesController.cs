@@ -13,15 +13,12 @@ namespace Sistema.Web.Controllers
 {
     public class MaterialesController : Controller
     {
-        private readonly CN_Categoria cnCategoria;
-
         private readonly CN_Material cnMaterial;
 
         private readonly MaterialServicio _materialServicio;
 
         public MaterialesController() 
         {
-            cnCategoria = new CN_Categoria();
             cnMaterial = new CN_Material();
             _materialServicio = new MaterialServicio();
         }
@@ -29,8 +26,8 @@ namespace Sistema.Web.Controllers
         [HttpGet]
         public JsonResult ObtenerMateriales()
         {
-            var categorias = cnMaterial.Listar();
-            return Json(categorias, JsonRequestBehavior.AllowGet);
+            var resultado = _materialServicio.ObtenerTodos();
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -44,7 +41,7 @@ namespace Sistema.Web.Controllers
         [HttpGet]
         public JsonResult ObtenerPorId(int id)
         {
-            var resultado = cnMaterial.ObtenerPorId(id);
+            var resultado = _materialServicio.ObtenerPorId(id);
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 

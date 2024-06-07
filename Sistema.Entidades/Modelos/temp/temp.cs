@@ -1,15 +1,14 @@
-using Sistema.Entidades.Modelos;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Sistema.Datos.Contextos
+namespace Sistema.Entidades.Modelos
 {
-    public partial class DeipsaContext : DbContext
+    public partial class temp : DbContext
     {
-        public DeipsaContext()
-            : base("name=Constructora")
+        public temp()
+            : base("name=temp")
         {
         }
 

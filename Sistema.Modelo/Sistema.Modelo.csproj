@@ -59,6 +59,7 @@
     <Compile Include="CN_Recursos.cs" />
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="Modelos\CompraDto.cs" />
+    <Compile Include="Modelos\MaterialDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\ComprasServicio.cs" />
     <Compile Include="Servicios\MaterialServicio.cs" />

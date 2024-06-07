@@ -5,9 +5,9 @@ var datatable;
 $(() => {
   $("#txtBuscar").on("change", (e) => {
     const texto = $(e.target).val();
-    datatable.search(texto).draw()
+    datatable.search(texto).draw();
   });
-  
+
   datatable = $("#tabla").DataTable({
     responsive: true,
     ordering: true,
@@ -15,7 +15,7 @@ $(() => {
       url: "/Compras/ObtenerTodos",
       type: "GET",
       dataType: "json",
-      dataSrc: ""
+      dataSrc: "",
     },
     columnDefs: [
       {
@@ -33,7 +33,7 @@ $(() => {
       {
         data: "Estado",
         render: (valor) =>
-          valor
+          valor === "Activo"
             ? '<span class="badge bg-success"><i class="fas fa-check"></i></span>'
             : '<span class="badge bg-danger"><i class="fas fa-xmark"></i></span>',
       },
@@ -42,7 +42,7 @@ $(() => {
           '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
         orderable: false,
         searchable: false,
-        width: "90px",
+        width: "40px",
       },
     ],
     language: {
@@ -67,20 +67,27 @@ $(() => {
     },
   });
 
-  $("#btnCrearRegistro").on("click", () => window.location.href = "Compras/Nueva");
+  $("#btnCrearRegistro").on(
+    "click",
+    () => (window.location.href = "Compras/Nueva")
+  );
 
-  // $("#tabla tbody").on("click", ".btn-eliminar", function () {
-  //   var filaSeleccionada = $(this).closest("tr");
+  $("#tabla tbody").on("click", ".btn-eliminar", function () {
+    console.log("asdfasdf");
+    var filaSeleccionada = $(this).closest("tr");
 
-  //   var data = datatable.row(filaSeleccionada).data();
+    var data = datatable.row(filaSeleccionada).data();
 
-  //   $.ajax({
-  //     url: `/Categorias/Desactivar`,
-  //     type: "POST",
-  //     data: { id: data.IdCategoria },
-  //     success: () => datatable.ajax.reload(),
-  //   });
-  // });
+    $.ajax({
+      url: `/Compras/Anular`,
+      type: "POST",
+      data: { id: data.IdCompra },
+      success: ({ Exitoso, Mensaje }) => {
+        if (Exitoso) return datatable.ajax.reload();
+        alert(Mensaje);
+      },
+    });
+  });
 
   // $("#tabla tbody").on("click", ".btn-editar", function () {
   //   var filaSeleccionada = $(this).closest("tr");
@@ -90,4 +97,3 @@ $(() => {
   //   abrirModal(data);
   // });
 });
-
