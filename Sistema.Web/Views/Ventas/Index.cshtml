@@ -1,8 +1,45 @@
-﻿
-@{
-    ViewBag.Title = "Ventas";
+﻿@{
+    ViewBag.Title = "Compras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ventas</h2>
 
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Procesos</a></li>
+    <li class="breadcrumb-item">Compras</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-toolbox me-1"></i> Lista de Compras
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" id="btnCrearRegistro">Crear Nuevo</button>
+            </div>
+        </div>
+        <hr />
+
+        <table id="tabla" class="display cell-border" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>FechaEmision</th>
+                    <th>Impuesto</th>
+                    <th>Descuento</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Views/Compras/index.js"></script>
+}

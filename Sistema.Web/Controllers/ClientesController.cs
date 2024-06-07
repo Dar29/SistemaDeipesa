@@ -1,5 +1,4 @@
-﻿using Sistema.Entidades;
-using Sistema.Entidades.Modelos;
+﻿using Sistema.Entidades.Modelos;
 using Sistema.Modelo.Servicios;
 using System;
 using System.Collections.Generic;
@@ -9,12 +8,12 @@ using System.Web.Mvc;
 
 namespace Sistema.Web.Controllers
 {
-    public class ProveedoresController : Controller
+    public class ClientesController : Controller
     {
-        private readonly ProveedorServicio _proveedorServicio;
+        private readonly ClienteServicio _clienteServicio;
 
-        public ProveedoresController()
-            => _proveedorServicio = new ProveedorServicio();
+        public ClientesController()
+            => _clienteServicio = new ClienteServicio();
 
         public ActionResult Index()
             => View();
@@ -22,21 +21,21 @@ namespace Sistema.Web.Controllers
         [HttpGet]
         public JsonResult Obtener()
         {
-            var servicios = _proveedorServicio.Obtener();
+            var servicios = _clienteServicio.Obtener();
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult ObtenerPorId(int id)
         {
-            var servicios = _proveedorServicio.ObtenerPorId(id);
+            var servicios = _clienteServicio.ObtenerPorId(id);
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Guardar(Tbl_Proveedor modelo)
+        public JsonResult Guardar(Tbl_Cliente modelo)
         {
-            var resultado = _proveedorServicio.InsertarOActualizar(modelo);
+            var resultado = _clienteServicio.InsertarOActualizar(modelo);
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
     }
