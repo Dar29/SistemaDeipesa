@@ -72,5 +72,50 @@ namespace Sistema.Modelo.Servicios
 
             return material;
         }
+
+        public IEnumerable<InventarioTrackingDto> ObtenerMovimientosPorIdMaterial(int idMaterial)
+        {
+            var movimientos = _contexto.Tbl_InventarioTracking.Where(x => x.IdMaterial == idMaterial).Select(x => new InventarioTrackingDto
+            {
+                Cantidad = x.Cantidad,
+                DescripcionMovimiento = x.Tbl_TipoMovimientoInventario.Descripcion,
+                Fecha = x.Fecha,
+                NombreUsuario = x.Tbl_Usuario.Nombres + " " + x.Tbl_Usuario.Apellidos,
+                Observacion = x.Observacion,
+                IdTracking = x.IdTracking
+            }).ToList();
+
+            return movimientos;
+        }
+
+        public Resultado GenerarSalidaPorDaño(int id, int cantidad, string observacion)
+        {
+            try
+            {
+                var entidad = _contexto.Tbl_Material.FirstOrDefault(x => x.IdMaterial == id);
+
+                if (entidad.Cantidad < cantidad) 
+                    return new Resultado(false, "La cantidad de salida es mayor a la cantidad existente en el sistema");
+
+                entidad.Cantidad -= cantidad;
+                entidad.Tbl_InventarioTracking.Add(new Tbl_InventarioTracking
+                {
+                    IdMov = 3,
+                    Cantidad = cantidad,
+                    Fecha = DateTime.Now,
+                    IdUsuario = _usuario.IdUsuario,
+                    Observacion = observacion,
+                });
+                
+                _contexto.Entry(entidad).State = EntityState.Modified;
+                _contexto.SaveChanges();
+
+                return new Resultado(true, "Se ha guardado el material exitosamente");
+            }
+            catch (Exception ex)
+            {
+                return new Resultado(false, ex.Message);
+            }
+        }
     }
 }

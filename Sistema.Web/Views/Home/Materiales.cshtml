@@ -94,6 +94,62 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalTransaccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Detalle de inventario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body g-4">
+                <table id="tablaTransaccion" class="display cell-border" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Movimiento</th>
+                            <th>Cantidad</th>
+                            <th>Observacion</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalSalida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <form class="modal-content" name="frmSalidaMaterial">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title" id="modalSalidaLabel">Generar salida por daño</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body g-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="txtIdMaterial" name="IdMaterial" hidden>
+                        <label for="txtCantidad" class="form-label">Cantidad</label>
+                        <input type="text" class="form-control" id="txtCantidad" name="Cantidad">
+                        <p class="text-muted">Al generar una salida por daño se disminuirá la cantidad de producto en el inventario</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="txtObservacion" class="form-label">Observación</label>
+                        <textarea class="form-control" id="txtObservacion" name="Observacion" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 @section scripts{
     <script src="~/Scripts/Views/Materiales/index.js"></script>

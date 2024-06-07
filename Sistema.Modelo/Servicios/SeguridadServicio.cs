@@ -27,6 +27,7 @@ namespace Sistema.Modelo.Servicios
                 if (!esValida)
                     return new Resultado(false, "Contraseña incorrecta, intente nuevamente");
 
+                HttpContext.Current.Session.Remove("__USER_SESSION__");
                 HttpContext.Current.Session["__USER_SESSION__"] = entidad;
 
                 return new Resultado(true, "Se ha iniciado sesión correctamente");

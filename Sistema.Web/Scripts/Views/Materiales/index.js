@@ -1,6 +1,7 @@
 ﻿"use strict";
 
 var datatable;
+var detalleDatatable;
 
 $(() => {
   $("#txtBuscar").on("change", (e) => {
@@ -40,11 +41,13 @@ $(() => {
           "<div>" +
           '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
           '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+          '<button type="button" class="btn btn-secondary btn-sm ms-2 btn-historial"><i class="fas fa-clipboard"></i></button>' +
+          '<button type="button" class="btn btn-warning btn-sm ms-2 btn-salida"><i class="fas fa-square-arrow-up-right"></i></button>' +
           "</div>",
         orderable: false,
         searchable: false,
         responsivePriority: -1,
-        width: "60px",
+        width: "135px",
       },
     ],
     language: {
@@ -96,10 +99,82 @@ $(() => {
     abrirModal(material);
   });
 
+  $("#tabla tbody").on("click", ".btn-salida", async function () {
+    var filaSeleccionada = $(this).closest("tr");
+
+    var data = datatable.row(filaSeleccionada).data();
+
+    $("#txtIdMaterial").val(data.IdMaterial);
+    $("#txtCantidad").val(1);
+    $("#modalSalida").modal("show");
+
+    // abrirModal(material);
+  });
+
+  $("#tabla tbody").on("click", ".btn-historial", async function () {
+    var filaSeleccionada = $(this).closest("tr");
+
+    var data = datatable.row(filaSeleccionada).data();
+
+    abrirModalTransacciones(data.IdMaterial);
+  });
+
   obtenerCategorias();
   obtenerMonedas();
   validarFormulario();
+  validarFormularioSalida();
 });
+
+async function abrirModalTransacciones(id) {
+  if (detalleDatatable) detalleDatatable.destroy();
+
+  detalleDatatable = $("#tablaTransaccion").DataTable({
+    responsive: true,
+    ordering: true,
+    ajax: {
+      url: "/Materiales/ObtenerMovimientosPorIdMaterial?idMaterial=" + id,
+      type: "GET",
+      dataType: "json",
+      dataSrc: "",
+    },
+    columns: [
+      { data: "IdTracking" },
+      { data: "NombreUsuario" },
+      { data: "Fecha" },
+      { data: "DescripcionMovimiento" },
+      { data: "Cantidad" },
+      { data: "Observacion" },
+    ],
+    columnDefs: [
+      {
+        targets: 2,
+        render: (data) => moment(data).format("DD/MM/YYYY"),
+      },
+    ],
+    language: {
+      decimal: "",
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+      infoEmpty: "Mostrando 0 to 0 of 0 Registros",
+      infoFiltered: "(Filtrado de _MAX_ total registros)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Registros",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+
+  $("#modalTransaccion").modal("show");
+}
 
 async function obtenerMonedas() {
   const monedas = await $.get("/Monedas/ObtenerMonedas");
@@ -194,6 +269,39 @@ function validarFormulario() {
           if (!Exitoso) return alert(Mensaje);
 
           $("#FormModal").modal("hide");
+          datatable.ajax.reload();
+        },
+      });
+    },
+  });
+}
+
+function validarFormularioSalida() {
+  $("form[name='frmSalidaMaterial']").validate({
+    rules: {
+      Cantidad: { required: true },
+      Observacion: { required: true },
+    },
+    messages: {
+      Cantidad: { required: "Debe ingresar una cantidad para la salida" },
+      Observacion: { required: "Debe ingresar una observación para la salida" },
+    },
+    submitHandler: (form) => {
+      if (!$(form).valid()) return;
+
+      var formData = new FormData(form);
+
+      $.ajax({
+        url: "/Materiales/GenerarSalidaPorDaño",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: ({ Exitoso, Mensaje }) => {
+          console.log({ Exitoso, Mensaje });
+          if (!Exitoso) return alert(Mensaje);
+
+          $("#modalSalida").modal("hide");
           datatable.ajax.reload();
         },
       });

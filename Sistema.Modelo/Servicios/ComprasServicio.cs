@@ -38,7 +38,7 @@ namespace Sistema.Modelo.Servicios
             try
             {
                 compra.IdEstadoOrden = 1;
-                compra.IdUsuario = 1;
+                compra.IdUsuario = _usuario.IdUsuario;
                 var subtotal = compra.Tbl_DetalleOrdenCompra.Sum(x => x.Subtotal);
                 compra.Total = subtotal - compra.Descuento ?? 0 + compra.Impuesto ?? 0;
                 _contexto.Tbl_OrdenCompra.Add(compra);
@@ -105,8 +105,8 @@ namespace Sistema.Modelo.Servicios
                         Cantidad = detalle.Cantidad,
                         Fecha = DateTime.Now,
                         IdUsuario = compra.IdUsuario,
-                        IdMov = 3,
-                        Observacion = $"Se anula la compra ${compra.IdOrdenCompra}",
+                        IdMov = 8,
+                        Observacion = $"Se anula la compra #{compra.IdOrdenCompra}",
                     });
 
                     _contexto.Entry(detalle.Tbl_Material).State = EntityState.Modified;
