@@ -70,6 +70,7 @@
     <Compile Include="Servicios\ServicioBase.cs" />
     <Compile Include="Servicios\SeguridadServicio.cs" />
     <Compile Include="Recursos\Encriptador.cs" />
+    <Compile Include="Servicios\TipoPagosServicio.cs" />
     <Compile Include="Servicios\VentasServicio.cs" />
   </ItemGroup>
   <ItemGroup>

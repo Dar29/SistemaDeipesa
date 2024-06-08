@@ -26,5 +26,7 @@ namespace Sistema.Modelo.Modelos
         public string TipoPago { get; set; }
 
         public string TipoFactura { get; set; }
+
+        public bool Activo { get; set; }
     }
 }

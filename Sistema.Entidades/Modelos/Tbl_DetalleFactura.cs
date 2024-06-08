@@ -15,11 +15,9 @@ namespace Sistema.Entidades.Modelos
 
         public int IdMaterial { get; set; }
 
-        public decimal Cantidad { get; set; }
+        public int Cantidad { get; set; }
 
         public decimal Subtotal { get; set; }
-
-        public DateTime Fecha { get; set; }
 
         public virtual Tbl_Factura Tbl_Factura { get; set; }
 

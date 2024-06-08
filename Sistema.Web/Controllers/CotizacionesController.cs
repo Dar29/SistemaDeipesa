@@ -1,18 +1,14 @@
 ﻿using Sistema.Entidades.Modelos;
 using Sistema.Modelo.Servicios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Sistema.Web.Controllers
 {
-    public class VentasController : Controller
+    public class CotizacionesController : Controller
     {
         private readonly VentasServicio _facturaServicio;
-        public VentasController() 
-            => _facturaServicio = new VentasServicio("F");
+        public CotizacionesController()
+            => _facturaServicio = new VentasServicio("O");
 
         public ActionResult Index()
             => View();
@@ -22,7 +18,7 @@ namespace Sistema.Web.Controllers
 
         public ActionResult ObtenerTodos()
             => Json(_facturaServicio.ObtenerFacturas(), JsonRequestBehavior.AllowGet);
-        
+
         [HttpGet]
         public ActionResult ObtenerTipoPagos()
             => Json(new TipoPagosServicio().ObtenerTodos(), JsonRequestBehavior.AllowGet);

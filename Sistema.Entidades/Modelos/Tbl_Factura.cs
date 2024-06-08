@@ -31,6 +31,8 @@ namespace Sistema.Entidades.Modelos
 
         public int IdTipoPagos { get; set; }
 
+        public bool Activo { get; set; }
+
         [StringLength(1)]
         public string TipoFactura { get; set; }
 

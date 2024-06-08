@@ -137,6 +137,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialesController.cs" />
     <Compile Include="Controllers\MonedasController.cs" />
@@ -520,6 +521,8 @@
     <Content Include="Scripts\Views\Materiales\index.js" />
     <Content Include="Scripts\Views\Proveedores\index.js" />
     <Content Include="Scripts\Views\Seguridad\login.js" />
+    <Content Include="Scripts\Views\Ventas\index.js" />
+    <Content Include="Scripts\Views\Ventas\nueva.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -546,11 +549,13 @@
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Materiales\Index.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Ventas\Nueva.cshtml" />
+    <Content Include="Views\Cotizaciones\Index.cshtml" />
+    <Content Include="Views\Cotizaciones\Nueva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\Views\Ventas\" />
     <Folder Include="Views\Monedas\" />
   </ItemGroup>
   <ItemGroup>

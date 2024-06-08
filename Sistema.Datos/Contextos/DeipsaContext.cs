@@ -77,10 +77,6 @@ namespace Sistema.Datos.Contextos
                 .WithRequired(e => e.Tbl_Cliente)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Tbl_DetalleFactura>()
-                .Property(e => e.Cantidad)
-                .HasPrecision(18, 1);
-
             modelBuilder.Entity<Tbl_EstadoMaterial>()
                 .Property(e => e.Descripcion)
                 .IsUnicode(false);
