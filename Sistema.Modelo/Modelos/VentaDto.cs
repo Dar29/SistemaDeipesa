@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema.Entidades.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Sistema.Modelo.Modelos
 
         public DateTime FechaEmision { get; set; }
 
+        public decimal? Subtotal { get; set; }
+
         public decimal? Impuesto { get; set; }
 
         public decimal? Descuento { get; set; }
@@ -28,5 +31,7 @@ namespace Sistema.Modelo.Modelos
         public string TipoFactura { get; set; }
 
         public bool Activo { get; set; }
+
+        public IEnumerable<DetalleFacturaDto> DetalleFactura { get; set; }
     }
 }

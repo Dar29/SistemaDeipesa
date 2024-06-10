@@ -24,7 +24,6 @@ namespace Sistema.Modelo.Servicios
 
         public IEnumerable<VentaDto> ObtenerFacturas()
         {
-            _contexto.Configuration.ProxyCreationEnabled = false;
             var facturas = _listadoFacturas.Select(x => new VentaDto
             {
                 IdFactura = x.IdFactura,
@@ -32,11 +31,18 @@ namespace Sistema.Modelo.Servicios
                 Descuento = x.Descuento,
                 Fecha = x.Fecha,
                 FechaEmision = x.FechaEmision,
+                Subtotal = x.Tbl_DetalleFactura.Sum(y => y.Subtotal),
                 Impuesto = x.Impuesto,
                 NombreCliente = x.Tbl_Cliente.Nombres,
                 TipoPago = x.Tbl_TipoPagos.Descripcion,
                 Total = x.Total,
-                Activo = x.Activo
+                Activo = x.Activo,
+                DetalleFactura = x.Tbl_DetalleFactura.Select(y => new DetalleFacturaDto
+                {
+                    Cantidad = y.Cantidad,
+                    NombreMaterial = y.Tbl_Material.Nombre,
+                    Subtotal = y.Subtotal
+                })
             }).ToList();
 
             return facturas;
@@ -50,7 +56,7 @@ namespace Sistema.Modelo.Servicios
                 var subtotal = factura.Tbl_DetalleFactura.Sum(x => x.Subtotal);
                 factura.FechaEmision = DateTime.Now;
                 factura.TipoFactura = _tipoFactura;
-                factura.Total = subtotal - factura.Descuento ?? 0 + factura.Impuesto ?? 0;
+                factura.Total = subtotal - (factura.Descuento ?? 0) + (factura.Impuesto ?? 0);
                 factura.Activo = true;
                 _contexto.Tbl_Factura.Add(factura);
 
@@ -70,7 +76,7 @@ namespace Sistema.Modelo.Servicios
                     material.Cantidad -= detalle.Cantidad;
 
                     if (detalle.Tbl_Material.Cantidad < 0)
-                        return new Resultado(false, $"No hay stock disponible del producto {detalle.Tbl_Material.Descripcion}");
+                        return new Resultado(false, $"No hay stock disponible del producto {detalle.Tbl_Material.Nombre}");
 
                     _contexto.Tbl_InventarioTracking.Add(new Tbl_InventarioTracking
                     {

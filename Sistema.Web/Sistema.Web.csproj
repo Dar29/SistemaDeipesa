@@ -517,6 +517,7 @@
     <Content Include="Scripts\Views\Clientes\index.js" />
     <Content Include="Scripts\Views\Compras\index.js" />
     <Content Include="Scripts\Views\Compras\nueva.js" />
+    <Content Include="Scripts\Views\Home\reporte.js" />
     <Content Include="Scripts\Views\Inventario\index.js" />
     <Content Include="Scripts\Views\Materiales\index.js" />
     <Content Include="Scripts\Views\Proveedores\index.js" />

@@ -25,10 +25,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Proveedor</th>
+                    <th>Cliente</th>
                     <th>FechaEmision</th>
-                    <th>Impuesto</th>
+                    <th>Subtotal</th>
                     <th>Descuento</th>
+                    <th>Impuesto</th>
                     <th>Total</th>
                     <th>Estado</th>
                     <th></th>
@@ -37,6 +38,75 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReporte" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <form class="modal-content" name="frmMaterial">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title" id="modalReporte">Detalle de Factura</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body g-4">
+                <div class="d-flex flex-column" style="gap:1rem">
+                    <label style="font-weight: bold">
+                        # de Factura: <span style="font-weight: normal" id="lblNumeroFactura"></span>
+                    </label>
+                    <label style="font-weight: bold">
+                        Cliente: <span style="font-weight: normal" id="lblNombreCliente"></span>
+                    </label>
+                    <label style="font-weight: bold">
+                        Fecha: <span style="font-weight: normal" id="lblFecha"></span>
+                    </label>
+                    <label style="font-weight: bold">
+                        Tipo: <span style="font-weight: normal" id="lblTipo"></span>
+                    </label>
+                    <label style="font-weight: bold">
+                        Estado: <span style="font-weight: normal" id="lblEstado"></span>
+                    </label>
+                    <table id="tablaDetalle" class="display cell-border" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Cant.</th>
+                                <th>Producto</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="bodyDetalle">
+                        </tbody>
+                        
+                        <tbody>
+                            
+                            <tr>
+                                <th></th>
+                                <th class="d-flex justify-content-end">Subtotal:</th>
+                                <td id="lblSubtotal"></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th class="d-flex justify-content-end">Descuento:</th>
+                                <td id="lblDescuento"></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th class="d-flex justify-content-end">Impuesto:</th>
+                                <td id="lblImpuesto"></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th class="d-flex justify-content-end">Total:</th>
+                                <td id="lblTotal"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </form>
     </div>
 </div>
 

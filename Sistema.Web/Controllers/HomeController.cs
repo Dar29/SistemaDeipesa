@@ -99,11 +99,9 @@ namespace Sistema.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult ListaInventario()
+        public JsonResult ListaInventario(DateTime? fecha, int? idMaterial, int? idCategoria, int? idUsuario)
         {
-            List<VInventario> oLista = new List<VInventario>();
-
-            oLista = new CN_Inventario().Listar();
+            var oLista = new CN_Inventario().Listar(fecha, idMaterial, idCategoria, idUsuario);
 
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
 
@@ -119,8 +117,5 @@ namespace Sistema.Web.Controllers
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
 
         }
-
-
-
     }
 }

@@ -42,8 +42,6 @@ namespace Sistema.Datos
                                 UsuarioIngreso = dr["UsuarioIngreso"] != DBNull.Value ? dr["UsuarioIngreso"].ToString() : string.Empty,
                                 Observacion = dr["Observacion"] != DBNull.Value ? dr["Observacion"].ToString() : string.Empty,
                                 FechaIngreso = dr["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(dr["FechaIngreso"]) : DateTime.MinValue
-
-
                             });
                         }
                         

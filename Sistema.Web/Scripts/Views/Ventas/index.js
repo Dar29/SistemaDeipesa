@@ -29,8 +29,9 @@ $(() => {
       { data: "IdFactura" },
       { data: "NombreCliente" },
       { data: "FechaEmision" },
-      { data: "Impuesto" },
+      { data: "Subtotal" },
       { data: "Descuento" },
+      { data: "Impuesto" },
       { data: "Total" },
       {
         data: "Activo",
@@ -41,10 +42,11 @@ $(() => {
       },
       {
         defaultContent:
-          '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+          '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+          '<button type="button" class="btn btn-success btn-sm ms-2 btn-reporte"><i class="fas fa-eye"></i></button>',
         orderable: false,
         searchable: false,
-        width: "40px",
+        width: "90px",
       },
     ],
     language: {
@@ -91,11 +93,36 @@ $(() => {
     });
   });
 
-  // $("#tabla tbody").on("click", ".btn-editar", function () {
-  //   var filaSeleccionada = $(this).closest("tr");
+  $("#tabla tbody").on("click", ".btn-reporte", function () {
+    var filaSeleccionada = $(this).closest("tr");
 
-  //   var data = datatable.row(filaSeleccionada).data();
+    var data = datatable.row(filaSeleccionada).data();
 
-  //   abrirModal(data);
-  // });
+    abrirModal(data);
+  });
 });
+
+async function abrirModal(data) {
+  console.log(data);
+  $("#lblNumeroFactura").text(data.IdFactura);
+  $("#lblNombreCliente").text(data.NombreCliente);
+
+  $("#bodyDetalle").html("");
+  data.DetalleFactura.map(({ Cantidad, NombreMaterial, Subtotal }) =>
+    $("#bodyDetalle").append(`<tr>
+      <td>${Cantidad}</th>
+      <td>${NombreMaterial}</th>
+      <td>${Subtotal}</td>
+    </tr>`)
+  );
+
+  $("#lblSubtotal").text(`${data.Subtotal?.toFixed(2)}`);
+  $("#lblDescuento").text(`${data.Descuento?.toFixed(2)}`);
+  $("#lblImpuesto").text(`${data.Impuesto?.toFixed(2)}`);
+  $("#lblTotal").text(`${data.Total?.toFixed(2)}`);
+  $("#lblFecha").text(moment(data.Fecha).format("d/MM/yyyy"));
+  $("#lblTipo").text(data.TipoFactura === "F" ? "Factura" : "Cotizacion");
+  $("#lblEstado").text(data.Activo ? "Procesada" : "Anulada");
+
+  $("#modalReporte").modal("show");
+}
