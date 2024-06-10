@@ -92,7 +92,8 @@ function abrirModal(data) {
   $("#txtEmail").val("");
   $("#txtTelefono").val("");
   $("#txtDireccion").val("");
-
+  $("#txtIdentificacion").val("");
+  
   if (data) {
     $("#txtIdCliente").val(data.IdCliente);
     $("#txtNombres").val(data.Nombres);
@@ -100,6 +101,7 @@ function abrirModal(data) {
     $("#txtEmail").val(data.Email);
     $("#txtTelefono").val(data.Telefono);
     $("#txtDireccion").val(data.Direccion);
+    $("#txtIdentificacion").val(data.Identificacion);
   }
 
   $("#FormModal").modal("show");
