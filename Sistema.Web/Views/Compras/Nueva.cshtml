@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Nuevga Compra";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Procesos</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index","Compras")">Compras</a></li>
+    <li class="breadcrumb-item active">Nueva</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-toolbox me-1"></i> Registrar nueva compra
+    </div>
+    <form name="frmCompra" class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <label for="ddlProveedor" class="form-label">Proveedor</label>
+                <select class="form-control" id="ddlProveedor" name="IdProveedor"></select>
+            </div>
+            <div class="col-6">
+                <label for="txtFecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="txtFecha" name="FechaEmision">
+            </div>
+            <div class="col-6">
+                <label for="txtImpuesto" class="form-label">Impuesto</label>
+                <input type="number" class="form-control" id="txtImpuesto" name="Impuesto">
+            </div>
+            <div class="col-6">
+                <label for="txtDescuento" class="form-label">Descuento</label>
+                <input type="number" class="form-control" id="txtDescuento" name="Descuento">
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-end mb-2">
+            <button type="button" class="btn btn-secondary" id="btnAgregar">Agregar producto</button>
+        </div>
+
+        <table id="tabla" class="display cell-border" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end mt-2">
+            <button type="submit" class="btn btn-primary" id="btnAgregar">Guardar Factura</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <form class="modal-content" name="frmMaterial">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title" id="FormModalLabel">Producto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body g-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="ddlMaterial" class="form-label">Material</label>
+                        <select class="form-control" id="ddlMaterial" name="IdMaterial"></select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtCantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="txtCantidad" name="Cantidad">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="txtCosto" class="form-label">Costo</label>
+                        <input type="number" class="form-control" id="txtCosto" name="Costo">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Views/Compras/nueva.js"></script>
+}

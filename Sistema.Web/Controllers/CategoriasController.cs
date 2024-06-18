@@ -17,6 +17,8 @@ namespace Sistema.Web.Controllers
             cnCategoria = new CN_Categoria();
         }
 
+        public ActionResult Index() => View();
+
         [HttpGet]
         public JsonResult ObtenerCatalogoCategorias()
         {

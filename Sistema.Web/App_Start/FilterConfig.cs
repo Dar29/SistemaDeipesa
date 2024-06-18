@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using Sistema.Web.Filters;
 using System.Web.Mvc;
 
 namespace Sistema.Web
@@ -8,6 +8,7 @@ namespace Sistema.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new SessionFilter());
         }
     }
 }

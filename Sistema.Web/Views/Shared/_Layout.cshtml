@@ -78,37 +78,35 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar" style="background-color: #042029">
+    <nav class="sb-topnav navbar px-2" style="background-color: #042029">
 
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars text-white"></i></button>
 
-        <span class="navbar-brand mx-auto text-white animate__animated animate__bounceIn" style="font-size: 24px;">Sistema de almacenamiento y venta de materiales</span>
+        <span class="navbar-brand mx-auto text-white animate__animated animate__bounceIn" style="font-size: 24px;">Sistema web para el control de compras y ventas</span>
 
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Buscar..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <input class="form-control" type="search" placeholder="Buscar..." id="txtBuscar" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </div>
-        </form>
+        </div>
         <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Mi cuenta</a></li>
-                    <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Cerrar sesion</a></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw text-white"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#!">Mi cuenta</a></li>
+                <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/Seguridad/IniciarSesion">Cerrar sesion</a></li>
+            </ul>
+        </div>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu"  style="background-color: #042029">
+                <div class="sb-sidenav-menu" style="background-color: #042029">
                     <div class="row" style="text-align: center;">
                         <a href="@Url.Action("Index", "Home")">
                             <img src="~/Content/image/logo3.png" alt="fondo" style="max-width: 150px; max-height: 150px;" />
@@ -125,24 +123,32 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Usuarios
                         </a>
-                        <a class="nav-link" href="@Url.Action("Materiales","Home")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-toolbox"></i></div>
-                            Materiales
+                        <a class="nav-link" href="@Url.Action("Index","Materiales")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                            Productos
                         </a>
-                        <a class="nav-link" href="@Url.Action("Categorias","Home")">
+                        <a class="nav-link" href="@Url.Action("Index","Categorias")">
                             <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                             Categorías
                         </a>
-                        <a class="nav-link" href="@Url.Action("Inventario","Home")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                            Inventario
+                        <a class="nav-link" href="@Url.Action("Index","Proveedores")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Proveedores
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index","Clientes")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Clientes
                         </a>
                         <div class="sb-sidenav-menu-heading">Procesos</div>
-                        <a class="nav-link" href="@Url.Action("Ventas","Home")">
+                        <a class="nav-link" href="@Url.Action("Index","Ventas")">
                             <div class="sb-nav-link-icon"><i class="fas fa-hand-holding-dollar"></i></div>
                             Ventas
                         </a>
-                        <a class="nav-link" href="@Url.Action("Compras","Home")">
+                        <a class="nav-link" href="@Url.Action("Index","Cotizaciones")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                            Cotizaciones
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index","Compras")">
                             <div class="sb-nav-link-icon"><i class="fas fa-cart-shopping"></i></div>
                             Compras
                         </a>
@@ -176,10 +182,7 @@
     <script src="~/Scripts/select2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/Layouts/layout.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
-@*<li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@

@@ -1,17 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Materiales";
+    ViewBag.Title = "Proveedores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <ol class="breadcrumb mb-4 mt-4">
     <li class="breadcrumb-item"><a href="@Url.Action("Materiales","Home")">Administración</a></li>
-    <li class="breadcrumb-item active">Materiales</li>
+    <li class="breadcrumb-item active">Proveedores</li>
 </ol>
 
 <div class="card">
     <div class="card-header">
-        <i class="fas fa-toolbox me-1"></i> Lista de Materiales
+        <i class="fas fa-toolbox me-1"></i> Lista de Proveedores
     </div>
     <div class="card-body">
         <div class="row">
@@ -27,8 +27,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Categoría</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
                     <th>Activo</th>
                     <th></th>
                 </tr>
@@ -45,32 +46,35 @@
     <div class="modal-dialog">
         <form class="modal-content" name="frmMaterial">
             <div class="modal-header bg-dark text-light">
-                <h5 class="modal-title" id="FormModalLabel">Materiales</h5>
+                <h5 class="modal-title" id="FormModalLabel">Proveedores</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body g-4">
                 <div class="row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="txtidmaterial" name="IdMaterial" hidden>
-                        <label for="txtnombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="txtnombre" name="Nombre">
+                        <input type="text" class="form-control" id="txtIdProveedor" name="IdProveedor" hidden>
+                        <label for="txtNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="txtNombre" name="Nombre">
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="txtdescripcion" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" id="txtdescripcion" name="Descripcion">
+                        <label for="txtEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="txtEmail" name="Email">
                     </div>
                     <div class="col-sm-6">
-                        <label for="selectcategoria" class="form-label">Categoria</label>
-                        <select class="form-select select2" id="selectcategoria" name="IdCategoria">
-                        </select>
+                        <label for="txtTelefono" class="form-label">Teléfono</label>
+                        <input type="number" maxlength="8" class="form-control" id="txtTelefono" name="Telefono">
                     </div>
                     <div class="col-sm-6">
                         <label for="selectactivo" class="form-label">Activo</label>
-                        <select class="form-select" id="selectactivo" name="IdEstadoMaterial">
+                        <select class="form-select" id="selectactivo" name="Estado">
                             <option value="1">Si</option>
                             <option value="0">No</option>
                         </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="txtDireccion" class="form-label">Dirección</label>
+                        <textarea type="text" class="form-control" id="txtDireccion" name="Direccion"></textarea>
                     </div>
                 </div>
             </div>
@@ -84,5 +88,5 @@
 
 
 @section scripts{
-    <script src="~/Scripts/Views/Materiales/index.js"></script>
+    <script src="~/Scripts/Views/Proveedores/index.js"></script>
 }
