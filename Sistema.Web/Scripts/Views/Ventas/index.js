@@ -43,7 +43,7 @@ $(() => {
       {
         defaultContent:
           '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
-          '<button type="button" class="btn btn-success btn-sm ms-2 btn-reporte"><i class="fas fa-eye"></i></button>',
+          '<button type="button" class="btn btn-success btn-sm ms-2 btn-reporte" ' + (controllerName === "Cotizaciones" ? "disabled": "") + '><i class="fas fa-eye"></i></button>',
         orderable: false,
         searchable: false,
         width: "90px",
