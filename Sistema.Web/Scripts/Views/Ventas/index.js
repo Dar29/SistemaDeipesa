@@ -77,7 +77,6 @@ $(() => {
   );
 
   $("#tabla tbody").on("click", ".btn-eliminar", function () {
-    console.log("asdfasdf");
     var filaSeleccionada = $(this).closest("tr");
 
     var data = datatable.row(filaSeleccionada).data();
@@ -114,13 +113,13 @@ async function abrirModal(data) {
       <td>${NombreMaterial}</th>
       <td>${Subtotal}</td>
     </tr>`)
-  );
-
+    );
+    debugger;
   $("#lblSubtotal").text(`${data.Subtotal?.toFixed(2)}`);
   $("#lblDescuento").text(`${data.Descuento?.toFixed(2)}`);
   $("#lblImpuesto").text(`${data.Impuesto?.toFixed(2)}`);
   $("#lblTotal").text(`${data.Total?.toFixed(2)}`);
-  $("#lblFecha").text(moment(data.Fecha).format("d/MM/yyyy"));
+  $("#lblFecha").text(data.FechaEmision).format("dd/MM/yyyy");
   $("#lblTipo").text(data.TipoFactura === "F" ? "Factura" : "Cotizacion");
   $("#lblEstado").text(data.Activo ? "Procesada" : "Anulada");
 

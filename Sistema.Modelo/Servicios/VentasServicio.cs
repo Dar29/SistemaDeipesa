@@ -29,7 +29,6 @@ namespace Sistema.Modelo.Servicios
                 IdFactura = x.IdFactura,
                 TipoFactura = x.TipoFactura,
                 Descuento = x.Descuento,
-                Fecha = x.Fecha,
                 FechaEmision = x.FechaEmision,
                 Subtotal = x.Tbl_DetalleFactura.Sum(y => y.Subtotal),
                 Impuesto = x.Impuesto,

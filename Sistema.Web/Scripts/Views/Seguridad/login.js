@@ -31,3 +31,16 @@ $(() => {
     },
   });
 });
+
+document.getElementById('frmLogin').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
+
+    // Mostrar el mensaje de carga
+    document.getElementById('frmLogin').style.display = 'none';
+    document.getElementById('loadingMessage').style.display = 'block';
+
+    setTimeout(function () {
+        document.getElementById('frmLogin').style.display = 'block';
+        document.getElementById('loadingMessage').style.display = 'none';
+    }, 3000);
+});
