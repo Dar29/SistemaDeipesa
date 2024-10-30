@@ -332,6 +332,7 @@
     <Content Include="Content\image\carousel-1.jpg" />
     <Content Include="Content\image\carousel-2.jpg" />
     <Content Include="Content\image\logo3.png" />
+    <Content Include="Content\image\portadaLogin.jpg" />
     <Content Include="Content\seguridad.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
